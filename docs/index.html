@@ -34,28 +34,35 @@
       align-items: center;
       justify-content: center;
       user-select: none;
+      font-size: 18px;
+      color: transparent;
+      transition: color 0.2s ease;
     }
 
     .checkbox.checked {
-      background-color: #4caf50;
-      color: white;
-    }
-
-    .checkbox.checked::after {
-      content: '✓';
-      font-size: 18px;
+      color: #4caf50;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+    <div class="checkbox" onclick="toggleCheckbox(this)">✓</div>
     Hello World
   </div>
 
   <script>
-    function toggleCheckbox(element) {
-      element.classList.toggle('checked');
+    const checkbox = document.querySelector('.checkbox');
+
+    // Cargar estado del checkbox desde localStorage
+    if (localStorage.getItem('checkboxState') === 'checked') {
+      checkbox.classList.add('checked');
+    }
+
+    function toggleCheckbox(el) {
+      el.classList.toggle('checked');
+      // Guardar estado
+      const isChecked = el.classList.contains('checked');
+      localStorage.setItem('checkboxState', isChecked ? 'checked' : 'unchecked');
     }
   </script>
 </body>
