@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>la taberna</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Título superior a la izquierda -->
+  <div class="page-title">la taberna</div>
+  <div class="top-divider"></div>
+
+
+  <!-- Buscador -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
+  </div>
+
+  <!-- Contenedor de todas las cajas -->
+  <div class="boxes-container">
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'hello')">✓</div>
+      <div class="box-title">hello world</div>
+    </div>
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'tentacle')">✓</div>
+      <div class="box-title">tentacle</div>
+    </div>
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'cap')">✓</div>
+      <div class="box-title">cap</div>
+    </div>
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'sword')">✓</div>
+      <div class="box-title">sword</div>
+    </div>
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'potion')">✓</div>
+      <div class="box-title">potion</div>
+    </div>
+    <div class="box">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'map')">✓</div>
+      <div class="box-title">map</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
