@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello world</title>
+  <title>Hello World</title>
   <style>
     body {
       display: flex;
@@ -10,18 +10,53 @@
       justify-content: center;
       align-items: center;
       background-color: #f0f0f0;
+      font-family: sans-serif;
     }
-    .box {
-      padding: 20px;
+
+    .container {
       background: white;
       border: 2px solid #ccc;
       border-radius: 10px;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
       font-size: 24px;
-      font-family: sans-serif;
+    }
+
+    .checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #666;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .checkbox.checked {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .checkbox.checked::after {
+      content: '✓';
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <div class="box">pito</div>
+  <div class="container">
+    <div class="checkbox" onclick="toggleCheckbox(this)"></div>
+    Hello World
+  </div>
+
+  <script>
+    function toggleCheckbox(element) {
+      element.classList.toggle('checked');
+    }
+  </script>
 </body>
 </html>
