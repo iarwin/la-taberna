@@ -92,3 +92,4 @@ function searchBoxes() {
 window.onload = function () {
   loadCheckboxesFromCookie();
 };
+
