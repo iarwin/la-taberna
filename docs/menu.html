@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>la taberna</title>
+  <title>la taberna - Menu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Parte superior (header) -->
   <a href="index.html" class="page-title">la taberna</a>
-  <button id="menuButton" class="menu-button" onclick="location.href='/menu.html'">menu</button>
+  <button id="menuButton" class="menu-button" onclick="window.location.href='/menu.html'">menu</button>
   <div class="top-divider"></div>
 
-  <div class="search-container">
+  <!-- Título "el menu" -->
+  <div class="menu-title">el menu</div>
+
+  <!-- Contenedor de búsqueda con separación específica para el menú -->
+  <div class="search-container menu-search-container">
     <div class="filter-wrapper">
       <button id="filterToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
@@ -25,6 +30,7 @@
             limpiar
           </button>
         </div>
+
         <div class="filter-options">
           <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
           <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
@@ -36,7 +42,8 @@
     <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
   </div>
 
-  <div class="boxes-container">
+  <!-- Lista de máquinas -->
+  <div class="boxes-container menu-boxes-container">
     <div class="box" data-difficulty="insana">
       <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
       <div class="tag insana">insana</div>
