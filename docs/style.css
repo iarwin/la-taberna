@@ -7,7 +7,6 @@ body {
   position: relative;
 }
 
-/* Título superior izquierdo */
 .page-title {
   position: absolute;
   top: 20px;
@@ -17,7 +16,6 @@ body {
   text-transform: lowercase;
 }
 
-/* Línea divisoria */
 .top-divider {
   position: absolute;
   top: 70px;
@@ -27,10 +25,9 @@ body {
   background-color: #ccc;
 }
 
-/* Contenedor de cajas centrado */
 .boxes-container {
   margin: 0 auto;
-  padding: 100px 40px 40px 50px; /* ajusta aquí el margen izquierdo */
+  padding: 100px 40px 40px 50px; 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 40px;
@@ -40,9 +37,8 @@ body {
   padding-top: 200px;
 }
 
-/* Cada caja */
 .box {
-  position: relative; /* necesario para posicionar el checkbox */
+  position: relative; 
   background: white;
   border: 2px solid #ccc;
   border-radius: 10px;
@@ -58,7 +54,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Checkbox */
 .checkbox {
   position: absolute;
   top: 10px;
@@ -81,19 +76,17 @@ body {
   color: #4caf50;
 }
 
-/* Título dentro de la caja */
 .box-title {
   text-align: center;
   width: 100%;
   margin-top: -15px;
 }
 
-/* Buscador */
 .search-container {
   position: absolute;
-  top: 90px; /* Ajustamos para que esté justo debajo de la línea */
+  top: 90px;
   left: 20px;
-  width: calc(100% - 40px); /* Para que ocupe el 100% del ancho */
+  width: calc(100% - 40px); 
   display: flex;
   justify-content: center;
   padding-top: 20px;
@@ -106,4 +99,91 @@ body {
   border-radius: 5px;
   border: 2px solid #ccc;
   box-sizing: border-box;
+}
+
+.tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+
+.facil {
+  background-color: #4caf50;
+}
+
+.media {
+  background-color: #ff9800;
+}
+
+.dificil {
+  background-color: #f44336;
+}
+
+.insana {
+  background-color: #6a1b9a;
+}
+
+.filter-wrapper {
+  position: relative;
+  margin-right: 20px;
+}
+
+#filterToggle {
+  padding: 15px 20px; 
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.filter-icon {
+  font-size: 20px;
+  color: #4caf50;
+}
+
+.filter-panel {
+  position: absolute;
+  top: 90px; /* ligeramente más abajo */
+  left: 50%;
+  transform: translateX(20%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 25px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  width: calc(100vw - 80px);
+  max-width: 1000px;
+}
+
+.filter-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: lowercase;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hidden {
+  display: none;
 }

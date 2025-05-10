@@ -6,31 +6,54 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Título superior a la izquierda -->
   <div class="page-title">la taberna</div>
   <div class="top-divider"></div>
 
-  <!-- Buscador -->
   <div class="search-container">
+    <div class="filter-wrapper">
+      <button id="filterToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="currentColor" />
+        </svg>
+        filtrar
+      </button>
+      <div id="filterPanel" class="filter-panel hidden">
+        <div class="filter-title">dificultad:</div>
+        <div class="filter-options">
+          <label><input type="checkbox" class="filter-checkbox" value="facil" checked /> facil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="media" checked /> media</label>
+          <label><input type="checkbox" class="filter-checkbox" value="dificil" checked /> dificil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="insana" checked /> insana</label>
+        </div>
+      </div>
+    </div>
     <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
   </div>
 
-  <!-- Contenedor de todas las cajas -->
   <div class="boxes-container">
-    <div class="box">
-      <div class="checkbox" onclick="toggleCheckbox(this, 'cap')">✓</div>
+    <div class="box" data-difficulty="facil">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
+      <div class="tag facil">facil</div>
       <div class="box-title">cap</div>
     </div>
-    <div class="box">
-      <div class="checkbox" onclick="toggleCheckbox(this, 'popcorn')">✓</div>
+    <div class="box" data-difficulty="media">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'popcorn')" data-id="popcorn">✓</div>
+      <div class="tag media">media</div>
       <div class="box-title">popcorn</div>
     </div>
-    <div class="box">
-      <div class="checkbox" onclick="toggleCheckbox(this, 'tentacle')">✓</div>
+    <div class="box" data-difficulty="dificil">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'tentacle')" data-id="tentacle">✓</div>
+      <div class="tag dificil">dificil</div>
       <div class="box-title">tentacle</div>
+    </div>
+    <div class="box" data-difficulty="insana">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
+      <div class="tag insana">insana</div>
+      <div class="box-title">ariekei</div>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
