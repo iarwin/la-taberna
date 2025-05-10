@@ -16,6 +16,26 @@ body {
   text-transform: lowercase;
 }
 
+#menuButton { /* Estilo para el botón Menu */
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  background-color: none;
+  color: black;
+  border: none;
+  padding: 0;
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  box-shadow: none;
+}
+
+#menuButton:hover {
+  background-color: none;
+  background: none;
+  box-shadow: none;
+}
+
 .top-divider {
   position: absolute;
   top: 70px;
@@ -196,7 +216,7 @@ body {
   border: none;
   font-weight: bold;
   font-size: 16px;
-cursor: pointer;
+  cursor: pointer;
   transition: color 0.2s ease;
   padding: 0;
   outline: none;

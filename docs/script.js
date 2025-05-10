@@ -121,3 +121,4 @@ document.getElementById("clearFilters").addEventListener("click", () => {
   });
   searchBoxes();
 });
+
