@@ -18,12 +18,19 @@
         filtrar
       </button>
       <div id="filterPanel" class="filter-panel hidden">
-        <div class="filter-title">dificultad:</div>
+        <!-- Encabezado con botón limpiar -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="filter-title">dificultad:</div>
+          <button id="clearFilters" style="font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #eee; cursor: pointer;">
+            limpiar
+          </button>
+        </div>
+        
         <div class="filter-options">
-          <label><input type="checkbox" class="filter-checkbox" value="facil" checked /> facil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="media" checked /> media</label>
-          <label><input type="checkbox" class="filter-checkbox" value="dificil" checked /> dificil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="insana" checked /> insana</label>
+          <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
+          <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
         </div>
       </div>
     </div>
@@ -31,6 +38,11 @@
   </div>
 
   <div class="boxes-container">
+    <div class="box" data-difficulty="insana">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
+      <div class="tag insana">insana</div>
+      <div class="box-title">ariekei</div>
+    </div>
     <div class="box" data-difficulty="facil">
       <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
       <div class="tag facil">facil</div>
@@ -46,14 +58,8 @@
       <div class="tag dificil">dificil</div>
       <div class="box-title">tentacle</div>
     </div>
-    <div class="box" data-difficulty="insana">
-      <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
-      <div class="tag insana">insana</div>
-      <div class="box-title">ariekei</div>
-    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-const machineList = ['cap', 'popcorn', 'tentacle', 'ariekei'];
+const machineList = ['ariekei', 'cap', 'popcorn', 'tentacle'];
 
 // Cookie helpers
 function getCookie(name) {
@@ -68,6 +68,7 @@ function toggleCheckbox(el, id) {
 function searchBoxes() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const boxes = document.getElementsByClassName("box");
+
   const activeDifficulties = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
     .map(cb => cb.value);
 
@@ -79,7 +80,13 @@ function searchBoxes() {
     const matchesText = text.includes(input);
     const matchesDifficulty = activeDifficulties.includes(difficulty);
 
-    box.style.display = (matchesText && (activeDifficulties.length === 0 || matchesDifficulty)) ? "" : "none";
+    if (input === "") {
+      // Si no hay texto, mostrar todo sin aplicar filtros
+      box.style.display = "";
+    } else {
+      // Si hay texto, aplicar filtros si están activos
+      box.style.display = (matchesText && (activeDifficulties.length === 0 || matchesDifficulty)) ? "" : "none";
+    }
   }
 }
 
@@ -102,7 +109,15 @@ document.addEventListener("click", function(event) {
   }
 });
 
+// Escucha cambios en filtros
 document.querySelectorAll(".filter-checkbox").forEach(cb => {
   cb.addEventListener("change", searchBoxes);
 });
 
+// Limpiar filtros
+document.getElementById("clearFilters").addEventListener("click", () => {
+  document.querySelectorAll(".filter-checkbox").forEach(cb => {
+    cb.checked = false;
+  });
+  searchBoxes();
+});
