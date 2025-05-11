@@ -95,17 +95,34 @@ window.onload = function () {
   loadCheckboxesFromCookie();
 };
 
+// Mostrar/ocultar panel de filtros
 document.getElementById("filterToggle").addEventListener("click", function () {
   document.getElementById("filterPanel").classList.toggle("hidden");
 });
 
-// Cerrar el menú si se hace clic fuera
+// Cerrar el menú de filtros si se hace clic fuera
 document.addEventListener("click", function(event) {
   const filterPanel = document.getElementById("filterPanel");
   const filterButton = document.getElementById("filterToggle");
   
   if (!filterPanel.contains(event.target) && !filterButton.contains(event.target)) {
     filterPanel.classList.add("hidden");
+  }
+});
+
+// Mostrar/ocultar panel de ordenar
+const sortButton = document.querySelector('.sort-button');
+const sortPanel = document.querySelector('.sort-panel');
+
+// Añadir evento de clic para mostrar/ocultar el panel de ordenar
+sortButton.addEventListener('click', () => {
+  sortPanel.style.display = sortPanel.style.display === 'none' || sortPanel.style.display === '' ? 'block' : 'none';
+});
+
+// Cerrar el panel de ordenar si se hace clic fuera de él
+window.addEventListener('click', (event) => {
+  if (!sortButton.contains(event.target) && !sortPanel.contains(event.target)) {
+    sortPanel.style.display = 'none';
   }
 });
 

@@ -108,10 +108,11 @@ body {
 .search-container {
   position: absolute;
   top: 90px;
-  left: 20px;
-  width: calc(100% - 40px);
+  right: 50px; /* Cambiado para mover los tres elementos hacia la derecha */
+  left: auto;
+  width: calc(100% - 120px); /* Ajustado para dar espacio a los botones */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Alinea los elementos a la izquierda dentro del contenedor */
   padding-top: 20px;
 }
 
@@ -126,6 +127,7 @@ body {
   border-radius: 5px;
   border: 2px solid #ccc;
   box-sizing: border-box;
+  margin-right: 20px; /* Espacio entre la barra y el botón de ordenar */
 }
 
 .tag {
@@ -245,3 +247,57 @@ body {
   text-transform: lowercase;
 }
 
+.sort-button {
+  padding: 15px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  margin-left: 20px; /* Espacio entre la barra de búsqueda y el botón de ordenar */
+}
+
+.sort-panel {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.sort-checkbox {
+  margin: 8px 0;
+}
+
+.sort-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 100;
+}
+
+.sort-menu label {
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.sort-menu label:hover {
+  background-color: #f1f1f1;
+}
+
+.sort-button.open + .sort-menu {
+  display: block;
+}

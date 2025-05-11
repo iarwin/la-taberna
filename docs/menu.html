@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>la taberna - Menu</title>
@@ -8,7 +8,7 @@
 <body>
   <!-- Parte superior (header) -->
   <a href="index.html" class="page-title">la taberna</a>
-  <button id="menuButton" class="menu-button" onclick="window.location.href='/la-taberna/menu.html'">menu</button>
+  <button id="menuButton" class="menu-button" onclick="window.location.href='menu.html'">menu</button>
   <div class="top-divider"></div>
 
   <!-- Título "el menu" -->
@@ -17,12 +17,15 @@
   <!-- Contenedor de búsqueda con separación específica para el menú -->
   <div class="search-container menu-search-container">
     <div class="filter-wrapper">
+      <!-- Botón para activar el filtro -->
       <button id="filterToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="currentColor" />
         </svg>
         filtrar
       </button>
+
+      <!-- Panel de filtros -->
       <div id="filterPanel" class="filter-panel hidden">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div class="filter-title">dificultad:</div>
@@ -39,7 +42,21 @@
         </div>
       </div>
     </div>
+
+    <!-- Barra de búsqueda -->
     <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
+
+    <!-- Botón Ordenar -->
+    <button id="sortToggle" class="sort-button">
+      ordenar
+    </button>
+
+    <!-- Panel de orden -->
+    <div id="sortPanel" class="sort-panel hidden">
+      <label>
+        <input type="checkbox" class="sort-checkbox" /> Ordenar por dificultad
+      </label>
+    </div>
   </div>
 
   <!-- Lista de máquinas -->
