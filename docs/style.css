@@ -322,3 +322,16 @@ body{
   display: block;
 }
 
+.rating {
+  font-size: 20px; /* Tamaño del texto del rating */
+  font-weight: bold; /* Peso del texto para que se destaque */
+  color: #333; /* Color oscuro para el rating */
+  position: absolute;
+  top: 5px; /* Ubicación en la parte superior de la caja */
+  left: 22%; /* Centrado horizontal */
+  transform: translateX(-50%); /* Para asegurar que el texto esté bien centrado */
+  background-color: #fff; /* Fondo blanco para mayor visibilidad */
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: none; /* Borde suave */
+}
