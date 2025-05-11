@@ -24,11 +24,10 @@ function binaryToBase64(binaryStr) {
 }
 
 function base64ToBinary(base64Str) {
-  const binary = atob(base64Str)
+  return atob(base64Str)
     .split('')
     .map(c => c.charCodeAt(0).toString(2).padStart(8, '0'))
     .join('');
-  return binary;
 }
 
 // Cargar estado checkboxes
@@ -37,7 +36,7 @@ function loadCheckboxesFromCookie() {
   if (!cookie) return;
 
   const binaryState = base64ToBinary(cookie).padEnd(machineList.length, '0');
-
+  
   machineList.forEach((id, index) => {
     const el = document.querySelector(`.checkbox[data-id="${id}"]`);
     if (el) {
@@ -67,27 +66,22 @@ function toggleCheckbox(el, id) {
 // Búsqueda y filtro combinados
 function searchBoxes() {
   const input = document.getElementById("searchInput").value.toLowerCase();
-  const boxes = document.getElementsByClassName("box");
+  const boxes = Array.from(document.getElementsByClassName("box"));
 
-  const activeDifficulties = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
-    .map(cb => cb.value);
+  const activeDifficulties = Array.from(
+    document.querySelectorAll(".filter-checkbox:checked")
+  ).map(cb => cb.value);
 
-  for (let i = 0; i < boxes.length; i++) {
-    const box = boxes[i];
+  boxes.forEach(box => {
     const text = box.innerText.toLowerCase();
     const difficulty = box.getAttribute("data-difficulty");
 
-    const matchesText = text.includes(input);
-    const matchesDifficulty = activeDifficulties.includes(difficulty);
+    const matchesText = input === "" || text.includes(input);
+    const matchesDifficulty =
+      activeDifficulties.length === 0 || activeDifficulties.includes(difficulty);
 
-    if (input === "") {
-      // Si no hay texto, mostrar todo sin aplicar filtros
-      box.style.display = "";
-    } else {
-      // Si hay texto, aplicar filtros si están activos
-      box.style.display = (matchesText && (activeDifficulties.length === 0 || matchesDifficulty)) ? "" : "none";
-    }
-  }
+    box.style.display = (matchesText && matchesDifficulty) ? "" : "none";
+  });
 }
 
 // Eventos
@@ -96,31 +90,21 @@ window.onload = function () {
 };
 
 // Mostrar/ocultar panel de filtros
-document.getElementById("filterToggle").addEventListener("click", function () {
-  document.getElementById("filterPanel").classList.toggle("hidden");
-});
+const filterToggle = document.getElementById("filterToggle");
+if (filterToggle) {
+  filterToggle.addEventListener("click", function () {
+    const panel = document.getElementById("filterPanel");
+    if (panel) panel.classList.toggle("hidden");
+  });
+}
 
 // Cerrar el menú de filtros si se hace clic fuera
 document.addEventListener("click", function(event) {
   const filterPanel = document.getElementById("filterPanel");
   const filterButton = document.getElementById("filterToggle");
 
-  if (!filterPanel.contains(event.target) && !filterButton.contains(event.target)) {
+  if (filterPanel && filterButton && !filterPanel.contains(event.target) && !filterButton.contains(event.target)) {
     filterPanel.classList.add("hidden");
-  }
-});
-
-// Mostrar/ocultar panel de ordenar
-const sortButton = document.querySelector('.sort-button');
-const sortPanel = document.querySelector('.sort-panel');
-
-sortButton.addEventListener('click', () => {
-  sortPanel.style.display = sortPanel.style.display === 'none' || sortPanel.style.display === '' ? 'block' : 'none';
-});
-
-window.addEventListener('click', (event) => {
-  if (!sortButton.contains(event.target) && !sortPanel.contains(event.target)) {
-    sortPanel.style.display = 'none';
   }
 });
 
@@ -130,41 +114,46 @@ document.querySelectorAll(".filter-checkbox").forEach(cb => {
 });
 
 // Limpiar filtros
-document.getElementById("clearFilters").addEventListener("click", () => {
-  document.querySelectorAll(".filter-checkbox").forEach(cb => {
-    cb.checked = false;
+const clearFilters = document.getElementById("clearFilters");
+if (clearFilters) {
+  clearFilters.addEventListener("click", () => {
+    document.querySelectorAll(".filter-checkbox").forEach(cb => cb.checked = false);
+    searchBoxes();
   });
-  searchBoxes();
-});
+}
 
-// Ordenar máquinas
-document.querySelectorAll(".sort-radio").forEach(radio => {
-  radio.addEventListener("change", function () {
-    const selectedOption = document.querySelector('input[name="sort"]:checked').value;
-    const boxes = Array.from(document.getElementsByClassName("box"));
+// Mostrar/ocultar panel de ordenar y ordenar
+const sortButton = document.querySelector('.sort-button');
+const sortPanel  = document.querySelector('.sort-panel');
 
-    const difficultyOrder = {
-      facil: 1,
-      media: 2,
-      dificil: 3,
-      insana: 4
-    };
+if (sortButton && sortPanel) {
+  sortButton.addEventListener('click', () => {
+    sortPanel.style.display =
+      (sortPanel.style.display === 'block') ? 'none' : 'block';
+  });
 
-    boxes.sort((a, b) => {
-      if (selectedOption === "alphabetical") {
-        const nameA = a.getAttribute("data-name") || a.innerText.toLowerCase();
-        const nameB = b.getAttribute("data-name") || b.innerText.toLowerCase();
-        return nameA.localeCompare(nameB);
-      } else if (selectedOption === "difficulty") {
-        const diffA = a.getAttribute("data-difficulty") || 'media';
-        const diffB = b.getAttribute("data-difficulty") || 'media';
-        return difficultyOrder[diffA] - difficultyOrder[diffB];
-      }
-      return 0;
+  window.addEventListener('click', (e) => {
+    if (!sortButton.contains(e.target) && !sortPanel.contains(e.target)) {
+      sortPanel.style.display = 'none';
+    }
+  });
+
+  document.querySelectorAll(".sort-radio").forEach(radio => {
+    radio.addEventListener("change", () => {
+      const option    = document.querySelector('input[name="sort"]:checked').value;
+      const container = document.querySelector(".boxes-container");
+      const boxes     = Array.from(container.getElementsByClassName("box"));
+      const orderMap  = { facil:1, media:2, dificil:3, insana:4 };
+
+      boxes.sort((a, b) => {
+        if (option === "alphabetical") {
+          return a.dataset.name.localeCompare(b.dataset.name);
+        }
+        return orderMap[a.dataset.difficulty] - orderMap[b.dataset.difficulty];
+      });
+
+      boxes.forEach(box => container.appendChild(box));
     });
-
-    const container = document.querySelector(".boxes-container");
-    boxes.forEach(box => container.appendChild(box));
   });
-});
+}
 
