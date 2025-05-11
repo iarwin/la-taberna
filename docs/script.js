@@ -104,7 +104,7 @@ document.getElementById("filterToggle").addEventListener("click", function () {
 document.addEventListener("click", function(event) {
   const filterPanel = document.getElementById("filterPanel");
   const filterButton = document.getElementById("filterToggle");
-  
+
   if (!filterPanel.contains(event.target) && !filterButton.contains(event.target)) {
     filterPanel.classList.add("hidden");
   }
@@ -114,12 +114,10 @@ document.addEventListener("click", function(event) {
 const sortButton = document.querySelector('.sort-button');
 const sortPanel = document.querySelector('.sort-panel');
 
-// Añadir evento de clic para mostrar/ocultar el panel de ordenar
 sortButton.addEventListener('click', () => {
   sortPanel.style.display = sortPanel.style.display === 'none' || sortPanel.style.display === '' ? 'block' : 'none';
 });
 
-// Cerrar el panel de ordenar si se hace clic fuera de él
 window.addEventListener('click', (event) => {
   if (!sortButton.contains(event.target) && !sortPanel.contains(event.target)) {
     sortPanel.style.display = 'none';
@@ -137,5 +135,36 @@ document.getElementById("clearFilters").addEventListener("click", () => {
     cb.checked = false;
   });
   searchBoxes();
+});
+
+// Ordenar máquinas
+document.querySelectorAll(".sort-radio").forEach(radio => {
+  radio.addEventListener("change", function () {
+    const selectedOption = document.querySelector('input[name="sort"]:checked').value;
+    const boxes = Array.from(document.getElementsByClassName("box"));
+
+    const difficultyOrder = {
+      facil: 1,
+      media: 2,
+      dificil: 3,
+      insana: 4
+    };
+
+    boxes.sort((a, b) => {
+      if (selectedOption === "alphabetical") {
+        const nameA = a.getAttribute("data-name") || a.innerText.toLowerCase();
+        const nameB = b.getAttribute("data-name") || b.innerText.toLowerCase();
+        return nameA.localeCompare(nameB);
+      } else if (selectedOption === "difficulty") {
+        const diffA = a.getAttribute("data-difficulty") || 'media';
+        const diffB = b.getAttribute("data-difficulty") || 'media';
+        return difficultyOrder[diffA] - difficultyOrder[diffB];
+      }
+      return 0;
+    });
+
+    const container = document.querySelector(".boxes-container");
+    boxes.forEach(box => container.appendChild(box));
+  });
 });
 

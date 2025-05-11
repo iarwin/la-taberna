@@ -1,4 +1,4 @@
-body {
+body{
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -276,6 +276,26 @@ body {
   margin: 8px 0;
 }
 
+/* Estilos para los radio buttons */
+.sort-radio {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.sort-panel label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-radio + label {
+  cursor: pointer;
+}
+
+.sort-radio:checked + label {
+  color: #4caf50;
+}
+
 .sort-menu {
   display: none;
   position: absolute;
@@ -301,3 +321,4 @@ body {
 .sort-button.open + .sort-menu {
   display: block;
 }
+

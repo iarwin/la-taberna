@@ -54,29 +54,32 @@
     <!-- Panel de orden -->
     <div id="sortPanel" class="sort-panel hidden">
       <label>
-        <input type="checkbox" class="sort-checkbox" /> Ordenar por dificultad
+        <input type="radio" name="sort" class="sort-radio" value="alphabetical" /> Alfabético
+      </label>
+      <label>
+        <input type="radio" name="sort" class="sort-radio" value="difficulty" /> Dificultad
       </label>
     </div>
   </div>
 
   <!-- Lista de máquinas -->
   <div class="boxes-container menu-boxes-container">
-    <div class="box" data-difficulty="insana">
+    <div class="box" data-difficulty="insana" data-name="ariekei">
       <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
       <div class="tag insana">insana</div>
       <div class="box-title">ariekei</div>
     </div>
-    <div class="box" data-difficulty="facil">
+    <div class="box" data-difficulty="facil" data-name="cap">
       <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
       <div class="tag facil">facil</div>
       <div class="box-title">cap</div>
     </div>
-    <div class="box" data-difficulty="media">
+    <div class="box" data-difficulty="media" data-name="popcorn">
       <div class="checkbox" onclick="toggleCheckbox(this, 'popcorn')" data-id="popcorn">✓</div>
       <div class="tag media">media</div>
       <div class="box-title">popcorn</div>
     </div>
-    <div class="box" data-difficulty="dificil">
+    <div class="box" data-difficulty="dificil" data-name="tentacle">
       <div class="checkbox" onclick="toggleCheckbox(this, 'tentacle')" data-id="tentacle">✓</div>
       <div class="tag dificil">dificil</div>
       <div class="box-title">tentacle</div>
