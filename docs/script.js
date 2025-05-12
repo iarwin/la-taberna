@@ -1,6 +1,5 @@
 // script.js
 const machineList = ['ariekei', 'cap', 'popcorn', 'tentacle'];
-// Detectamos si estamos en menu.html (allí el contenedor tiene la clase .menu-boxes-container)
 const isMenuPage = !!document.querySelector('.menu-boxes-container');
 
 // Cookie helpers (sin cambios)
@@ -79,16 +78,15 @@ function toggleCheckbox(el, id) {
 // Búsqueda y filtro combinados (igual en ambas páginas)
 function searchBoxes() {
   const input = document.getElementById("searchInput").value.toLowerCase();
-  // Recoger filtros activos
   const activeDifficulties = Array.from(
     document.querySelectorAll(".filter-checkbox:checked")
   ).map(cb => cb.value);
   const boxes = Array.from(document.querySelectorAll('.box'));
 
-  // → Ocultar/mostrar el título “recomendaciones del chef” y ajustar posición solo en index.html
+  // Mostrar/ocultar el título “recomendaciones del chef” (solo si hay texto)
   if (!isMenuPage) {
     const chefEl = document.getElementById("chefRecommendations");
-    if (input !== "" || activeDifficulties.length > 0) {
+    if (input !== "") {
       chefEl.style.display = "none";
       document.body.classList.add("search-active");
     } else {
@@ -97,17 +95,17 @@ function searchBoxes() {
     }
   }
 
-  // 1) Sin texto y sin filtros en index: mostrar top 3 y salir
-  if (!isMenuPage && input === '' && activeDifficulties.length === 0) {
+  // Sin texto en index → modo recomendaciones, ignorar filtros
+  if (!isMenuPage && input === "") {
     showTop3ByRating();
     return;
   }
 
-  // 2) Con texto o filtros: filtrar por texto + dificultad
+  // Con texto → aplicar búsqueda + filtros
   boxes.forEach(box => {
     const text = box.innerText.toLowerCase();
     const diff = box.dataset.difficulty;
-    const matchesText = input === '' ? true : text.includes(input);
+    const matchesText = text.includes(input);
     const matchesDiff = activeDifficulties.length === 0 || activeDifficulties.includes(diff);
     box.style.display = (matchesText && matchesDiff) ? '' : 'none';
   });
@@ -133,7 +131,6 @@ document.addEventListener("click", function(event) {
     panel.classList.add("hidden");
   }
 });
-// Listeners de checkbox sin showTop3ByRating extra
 document.querySelectorAll(".filter-checkbox").forEach(cb => {
   cb.addEventListener("change", () => {
     searchBoxes();
@@ -153,27 +150,23 @@ if (isMenuPage) {
   const sortPanel  = document.getElementById("sortPanel");
   const alphaRadio = document.querySelector('input[name="sort"][value="alphabetical"]');
 
-  // Marcar Alfabético por defecto y aplicar orden al cargar
   if (alphaRadio) {
     alphaRadio.checked = true;
     alphaRadio.dispatchEvent(new Event('change'));
   }
 
-  // Mostrar/ocultar panel de orden
   if (sortToggle && sortPanel) {
     sortToggle.addEventListener("click", (e) => {
       e.stopPropagation();
       sortPanel.style.display = sortPanel.style.display === "block" ? "none" : "block";
     });
 
-    // Cerrar al hacer click fuera
     document.addEventListener("click", (e) => {
       if (!sortToggle.contains(e.target) && !sortPanel.contains(e.target)) {
         sortPanel.style.display = "none";
       }
     });
 
-    // Al cambiar opción, ordenar las cajas
     document.querySelectorAll(".sort-radio").forEach(radio => {
       radio.addEventListener("change", () => {
         const option    = document.querySelector('input[name="sort"]:checked').value;
