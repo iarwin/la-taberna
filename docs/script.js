@@ -81,7 +81,21 @@ function searchBoxes() {
   const input = document.getElementById("searchInput").value.toLowerCase();
   const boxes = Array.from(document.querySelectorAll('.box'));
 
-  // 1) Sin texto y en index: reaplicar siempre top 3
+  // → Ocultar/mostrar el título “recomendaciones del chef” y ajustar posición solo en index.html
+  if (!isMenuPage) {
+    const chefEl = document.getElementById("chefRecommendations");
+    if (input !== "") {
+      chefEl.style.display = "none";
+      document.body.classList.add("search-active");
+    } else {
+      chefEl.style.display = "";
+      document.body.classList.remove("search-active");
+      // Cuando quede vacío, reaplicamos el top 3
+      showTop3ByRating();
+    }
+  }
+
+  // 1) Sin texto y en index: reaplicar siempre top 3 y salir
   if (input === '' && !isMenuPage) {
     showTop3ByRating();
     return;

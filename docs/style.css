@@ -369,3 +369,10 @@ body{
 .index-page .menu-title {
   top: 225px;
 }
+
+/* Elevar cajas cuando haya búsqueda activa */
+.index-page.search-active .boxes-container:not(.menu-boxes-container) {
+  padding-top: 0px; /* Nuevo padding para subir las cajas */
+  transition: padding-top 0.3s ease;
+}
+
