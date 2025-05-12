@@ -87,6 +87,18 @@ function searchBoxes() {
 // Eventos
 window.onload = function () {
   loadCheckboxesFromCookie();
+
+  // Ordenar alfabéticamente por defecto
+  const container = document.querySelector(".boxes-container");
+  if (container) {
+    const boxes = Array.from(container.getElementsByClassName("box"));
+    boxes.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+    boxes.forEach(box => container.appendChild(box));
+  }
+
+  // Marcar opción de orden alfabético por defecto
+  const alphabeticalRadio = document.querySelector('input[name="sort"][value="alphabetical"]');
+  if (alphabeticalRadio) alphabeticalRadio.checked = true;
 };
 
 // Mostrar/ocultar panel de filtros
