@@ -79,33 +79,31 @@ function toggleCheckbox(el, id) {
 // Búsqueda y filtro combinados (igual en ambas páginas)
 function searchBoxes() {
   const input = document.getElementById("searchInput").value.toLowerCase();
+  // Recoger filtros activos
+  const activeDifficulties = Array.from(
+    document.querySelectorAll(".filter-checkbox:checked")
+  ).map(cb => cb.value);
   const boxes = Array.from(document.querySelectorAll('.box'));
 
   // → Ocultar/mostrar el título “recomendaciones del chef” y ajustar posición solo en index.html
   if (!isMenuPage) {
     const chefEl = document.getElementById("chefRecommendations");
-    if (input !== "") {
+    if (input !== "" || activeDifficulties.length > 0) {
       chefEl.style.display = "none";
       document.body.classList.add("search-active");
     } else {
       chefEl.style.display = "";
       document.body.classList.remove("search-active");
-      // Cuando quede vacío, reaplicamos el top 3
-      showTop3ByRating();
     }
   }
 
-  // 1) Sin texto y en index: reaplicar siempre top 3 y salir
-  if (input === '' && !isMenuPage) {
+  // 1) Sin texto y sin filtros en index: mostrar top 3 y salir
+  if (!isMenuPage && input === '' && activeDifficulties.length === 0) {
     showTop3ByRating();
     return;
   }
 
-  // 2) Con texto o en menu: filtrar por texto + dificultad
-  const activeDifficulties = Array.from(
-    document.querySelectorAll(".filter-checkbox:checked")
-  ).map(cb => cb.value);
-
+  // 2) Con texto o filtros: filtrar por texto + dificultad
   boxes.forEach(box => {
     const text = box.innerText.toLowerCase();
     const diff = box.dataset.difficulty;
@@ -135,10 +133,10 @@ document.addEventListener("click", function(event) {
     panel.classList.add("hidden");
   }
 });
+// Listeners de checkbox sin showTop3ByRating extra
 document.querySelectorAll(".filter-checkbox").forEach(cb => {
   cb.addEventListener("change", () => {
     searchBoxes();
-    showTop3ByRating();
   });
 });
 const clearFilters = document.getElementById("clearFilters");
@@ -146,7 +144,6 @@ if (clearFilters) {
   clearFilters.addEventListener("click", () => {
     document.querySelectorAll(".filter-checkbox").forEach(cb => cb.checked = false);
     searchBoxes();
-    showTop3ByRating();
   });
 }
 
