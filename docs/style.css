@@ -335,3 +335,32 @@ body{
   padding: 5px 10px;
   border: none; /* Borde suave */
 }
+
+/* En style.css, al final: */
+
+/* Sobreescribe solo para index.html (no afecta a menu.html) */
+.boxes-container:not(.menu-boxes-container) {
+  /* Cambiamos de grid a flex para centrar fácilmente */
+  display: flex;
+  flex-wrap: wrap;              /* que vuelva a la siguiente línea */
+  justify-content: center;      /* centra horizontalmente */
+  gap: 40px;                    /* mantiene el espacio entre cajas */
+  padding: 200px 40px 40px;     /* mismo padding-top que antes */
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Ajusta el ancho fijo de caja para flex */
+.boxes-container:not(.menu-boxes-container) .box {
+  width: 400px;
+}
+
+/* Sobreescribe solo para index.html */
+.index-page .boxes-container:not(.menu-boxes-container) {
+  padding-top: 150px;  /* Ajusta la posición vertical del contenedor */
+}
+
+/* Si quieres mover las cajas individualmente, puedes usar margin-top */
+.index-page .boxes-container:not(.menu-boxes-container) .box {
+  margin-top: 250px;  /* Ajusta la posición de cada caja */
+}
