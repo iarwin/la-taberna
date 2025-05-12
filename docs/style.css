@@ -364,3 +364,8 @@ body{
 .index-page .boxes-container:not(.menu-boxes-container) .box {
   margin-top: 250px;  /* Ajusta la posición de cada caja */
 }
+
+/* Ajusta la posición del título solo en index.html */
+.index-page .menu-title {
+  top: 225px;
+}
