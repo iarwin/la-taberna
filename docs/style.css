@@ -127,7 +127,7 @@ body{
   border-radius: 5px;
   border: 2px solid #ccc;
   box-sizing: border-box;
-  margin-right: 20px; /* Espacio entre la barra y el botón de ordenar */
+  margin-right: 20px; /* Espacio entre la barra de búsqueda y el botón de ordenar */
 }
 
 .tag {
@@ -350,6 +350,15 @@ body{
   border: 1px solid #ccc;
   text-align: center;
   border: none;
+}
+
+/* Icono de sistema operativo junto a la IP */
+.os-icon {
+  position: absolute;
+  bottom: 10px;          /* Coincide con la posición vertical de .ip */
+  left: 40%;/* Ajusta para situarlo justo a la derecha de la IP */
+  width: 35px;
+  height: 35px;
 }
 
 /* Sobreescribe solo para index.html (no afecta a menu.html) */
