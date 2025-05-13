@@ -111,10 +111,25 @@ function searchBoxes() {
   });
 }
 
+// Mostrar IPs debajo de las cajas
+function displayIPs() {
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach(box => {
+    const ip = box.dataset.ip; // Obtener la IP desde el data-ip
+    if (ip) {
+      const ipDiv = document.createElement('div');
+      ipDiv.classList.add('ip');
+      ipDiv.textContent = ip;
+      box.appendChild(ipDiv); // Añadir la IP a la caja
+    }
+  });
+}
+
 // Setup inicial
 window.onload = function () {
   loadCheckboxesFromCookie();
   showTop3ByRating();
+  displayIPs(); // Mostrar las IPs
 };
 
 // Mostrar/ocultar panel de filtros

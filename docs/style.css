@@ -336,7 +336,21 @@ body{
   border: none; /* Borde suave */
 }
 
-/* En style.css, al final: */
+/* Nueva clase para las IPs */
+.ip {
+  font-size: 20px;
+  color: black;
+  position: absolute;
+  bottom: 10px;
+  left: 20%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 3px 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border: none;
+}
 
 /* Sobreescribe solo para index.html (no afecta a menu.html) */
 .boxes-container:not(.menu-boxes-container) {
