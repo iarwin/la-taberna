@@ -119,7 +119,20 @@ function displayIPs() {
   });
 }
 
-// Inicialización
+// Menú flotante vacío para cajas
+function createFloatingMenu() {
+  const menu = document.createElement('div');
+  menu.id = 'floatingMenu';
+  menu.style.position = 'absolute';
+  menu.style.background = 'white';
+  menu.style.border = '1px solid #ccc';
+  menu.style.padding = '10px';
+  menu.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+  menu.style.zIndex = 1000;
+  // menú vacío, puedes añadir contenido después si quieres
+  return menu;
+}
+
 window.onload = () => {
   loadCheckboxesFromCookie();
   showTop3ByRating();
@@ -164,20 +177,68 @@ window.onload = () => {
           sortPanel.style.display = 'none';
         }
       });
-      document.querySelectorAll('.sort-radio').forEach(radio => {
-        radio.addEventListener('change', () => {
-          const opt = document.querySelector('input[name="sort"]:checked').value;
-          const container = document.querySelector('.menu-boxes-container');
-          const boxes = Array.from(container.getElementsByClassName('box'));
-          const order = { facil: 1, media: 2, dificil: 3, insana: 4 };
-          boxes.sort((a, b) => {
-            if (opt === 'alphabetical') return a.dataset.name.localeCompare(b.dataset.name);
-            return order[a.dataset.difficulty] - order[b.dataset.difficulty];
-          });
+      document.querySelectorAll('.sort-radio').forEach(rb => {
+        rb.addEventListener('change', () => {
+          const boxes = Array.from(document.querySelectorAll('.boxes-container .box'));
+          if (rb.value === 'alphabetical') {
+            boxes.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+          } else if (rb.value === 'rating') {
+            boxes.sort((a, b) => parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating));
+          }
+          const container = document.querySelector('.boxes-container');
           boxes.forEach(b => container.appendChild(b));
+          sortPanel.style.display = 'none';
         });
       });
     }
   }
+
+  // Evento click en checkboxes
+  document.querySelectorAll('.checkbox').forEach(cb => {
+    cb.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleCheckbox(cb, cb.dataset.id);
+    });
+  });
+
+  // Evento click en .box para mostrar menú flotante vacío
+  document.querySelectorAll('.box').forEach(box => {
+    box.addEventListener('click', e => {
+      // Primero eliminar cualquier menú flotante previo
+      const prevMenu = document.getElementById('floatingMenu');
+      if (prevMenu) prevMenu.remove();
+
+      // Crear menú flotante vacío
+      const menu = createFloatingMenu();
+      document.body.appendChild(menu);
+
+      // Posicionar menú justo al lado del click, ajustando para no salir de pantalla
+      const rect = box.getBoundingClientRect();
+      const menuWidth = 150;
+      const menuHeight = 100;
+
+      let left = rect.right + 10;
+      let top = rect.top;
+
+      if (left + menuWidth > window.innerWidth) {
+        left = rect.left - menuWidth - 10;
+      }
+      if (top + menuHeight > window.innerHeight) {
+        top = window.innerHeight - menuHeight - 10;
+      }
+
+      menu.style.left = `${left + window.scrollX}px`;
+      menu.style.top = `${top + window.scrollY}px`;
+
+      // Cerrar menú al hacer clic fuera
+      const closeMenu = ev => {
+        if (!menu.contains(ev.target) && !box.contains(ev.target)) {
+          menu.remove();
+          document.removeEventListener('click', closeMenu);
+        }
+      };
+      setTimeout(() => document.addEventListener('click', closeMenu), 0);
+    });
+  });
 };
 
