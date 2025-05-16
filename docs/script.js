@@ -219,3 +219,24 @@ window.onload = () => {
   });
 };
 
+// Función que maneja el toggle de las checkboxes
+function toggleCheckbox(el) {
+  el.classList.toggle('checked');
+  // Actualizar cookie con estado actual
+  let binary = '';
+  machineList.forEach(id => {
+    const cb = document.querySelector(`.checkbox[data-id="${id}"]`);
+    binary += cb && cb.classList.contains('checked') ? '1' : '0';
+  });
+  setCookie('checkboxState', binaryToBase64(binary), 42 * 365);
+  showTop3ByRating();
+}
+
+// Al cargar el DOM, asignar evento a cada checkbox
+document.querySelectorAll('.checkbox').forEach(cb => {
+  cb.addEventListener('click', e => {
+    e.stopPropagation();
+    e.preventDefault(); // Añadido para prevenir comportamientos por defecto
+    toggleCheckbox(cb);
+  });
+});
