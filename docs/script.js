@@ -1,5 +1,5 @@
 // script.js
-const machineList = ['ariekei', 'cap', 'popcorn', 'tentacle'];
+const machineList = ['ariekei', 'cap', 'popcorn', 'tentacle', 'knife'];
 const isMenuPage = !!document.querySelector('.menu-boxes-container');
 
 // SVG icons como strings
@@ -285,3 +285,53 @@ document.querySelectorAll('.checkbox').forEach(cb => {
     toggleCheckbox(cb);
   });
 });
+
+// Mapeo de dificultad en español a un orden lógico
+const dificultadOrden = {
+  facil: 1,
+  media: 2,
+  dificil: 3,
+  insana: 4
+};
+
+// Función para ordenar alfabéticamente
+function ordenarAlfabeticamente() {
+  const container = document.querySelector('.boxes-container');
+  const boxes = Array.from(container.querySelectorAll('.box'));
+
+  boxes.sort((a, b) => {
+    const nameA = a.dataset.name?.toLowerCase() || '';
+    const nameB = b.dataset.name?.toLowerCase() || '';
+    return nameA.localeCompare(nameB);
+  });
+
+  boxes.forEach(box => container.appendChild(box));
+}
+
+// Función para ordenar por dificultad
+function ordenarPorDificultad() {
+  const container = document.querySelector('.boxes-container');
+  const boxes = Array.from(container.querySelectorAll('.box'));
+
+  boxes.sort((a, b) => {
+    const difA = dificultadOrden[a.dataset.difficulty?.toLowerCase()] || 0;
+    const difB = dificultadOrden[b.dataset.difficulty?.toLowerCase()] || 0;
+    return difA - difB;
+  });
+
+  boxes.forEach(box => container.appendChild(box));
+}
+
+// Escuchar cambios en los radios de orden
+document.querySelectorAll('.sort-radio').forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    if (e.target.value === 'alphabetical') {
+      ordenarAlfabeticamente();
+    } else if (e.target.value === 'difficulty') {
+      ordenarPorDificultad();
+    } else if (e.target.value === 'rating') {
+      ordenarPorValoracion();
+    }
+  });
+});
+

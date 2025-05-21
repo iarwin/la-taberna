@@ -396,7 +396,7 @@ body{
 
 /* Ajusta la posición del título solo en index.html */
 .index-page .menu-title {
-  top: 225px;
+  top: 250px;
 }
 
 /* Elevar cajas cuando haya búsqueda activa */
