@@ -118,19 +118,64 @@ function displayIPs() {
 }
 
 // Menú flotante vacío para cajas
-function createFloatingMenu() {
+function createFloatingMenu(box) {
   const menu = document.createElement('div');
   menu.id = 'floatingMenu';
-  menu.style.position = 'fixed'; // cambiado a fixed para centrar
+  menu.style.position = 'fixed';
   menu.style.background = 'white';
   menu.style.border = '1px solid #ccc';
   menu.style.padding = '10px';
   menu.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
   menu.style.zIndex = 1000;
-  // Centramos con transform:
   menu.style.left = '50%';
   menu.style.top = '50%';
   menu.style.transform = 'translate(-50%, -50%)';
+
+  const closeButton = document.createElement('span');
+  closeButton.innerHTML = '&times;'; // ✖
+  closeButton.classList.add('floating-menu-close');
+  closeButton.onclick = () => {
+    menu.remove(); // elimina el menú de la página
+  };
+
+  menu.appendChild(closeButton);
+
+  const name = box.dataset.name;
+  const title = document.createElement('h2');
+  title.textContent = `${name}`;
+  title.classList.add('floating-menu-title'); // usamos la clase CSS
+  menu.appendChild(title);
+
+  const ip = box.dataset.ip;
+  const ipText = document.createElement('p');
+  ipText.textContent = `${ip}`;
+  ipText.classList.add('floating-menu-ip');
+  menu.appendChild(ipText);
+
+  const recipeButton = document.createElement('button');
+  recipeButton.classList.add('floating-menu-recipe-button');
+  recipeButton.textContent = 'ver receta';
+
+  recipeButton.addEventListener('click', () => {
+    const safeName = name.trim().replace(/\s+/g, '-');
+    window.location.href = `./writeups/${safeName}.txt`;
+  });
+
+  menu.appendChild(recipeButton);
+
+  const videoId = box.dataset.video;
+  if (videoId) {
+    const videoFrame = document.createElement('iframe');
+    videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+    videoFrame.classList.add('floating-menu-video');
+    videoFrame.frameBorder = '0';
+    videoFrame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    videoFrame.allowFullscreen = true;
+    videoFrame.classList.add('floating-menu-video');
+    menu.appendChild(videoFrame);
+  }
+
+
   return menu;
 }
 
@@ -203,7 +248,7 @@ window.onload = () => {
       const prevMenu = document.getElementById('floatingMenu');
       if (prevMenu) prevMenu.remove();
 
-      const menu = createFloatingMenu();
+      const menu = createFloatingMenu(box);
       document.body.appendChild(menu);
 
       // Ya no calculamos posición según la caja porque está centrado fijo
