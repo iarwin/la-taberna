@@ -1,5 +1,5 @@
 // script.js
-const machineList = ['ariekei', 'cap', 'popcorn', 'tentacle', 'knife'];
+const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy'];
 const isMenuPage = !!document.querySelector('.menu-boxes-container');
 
 // SVG icons como strings
@@ -56,15 +56,38 @@ function loadCheckboxesFromCookie() {
 // Mostrar solo top 3 por rating (index.html)
 function showTop3ByRating() {
   if (isMenuPage) return;
+
   const boxes = Array.from(document.querySelectorAll('.boxes-container .box'));
+
+  // Filtrar las que NO estén completas (o sea, no tengan clase 'checked' en la checkbox)
   const pendientes = boxes.filter(box => {
-    const id = box.dataset.name;
-    return !box.querySelector(`.checkbox[data-id="${id}"]`).classList.contains('checked');
+    const checkbox = box.querySelector('.checkbox');
+    return !checkbox.classList.contains('checked');
   });
-  pendientes.sort((a, b) => parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating));
-  boxes.forEach(box => (box.style.display = 'none'));
-  pendientes.slice(0, 3).forEach(box => (box.style.display = ''));
+
+  // Ordenar por rating de mayor a menor
+  pendientes.sort((a, b) => {
+    const ratingA = parseFloat(a.dataset.rating || 0);
+    const ratingB = parseFloat(b.dataset.rating || 0);
+    return ratingB - ratingA;
+  });
+
+  // Ocultar todas
+  boxes.forEach(box => {
+    box.style.display = 'none';
+  });
+
+  // Mostrar solo las top 3
+  const top3 = pendientes.slice(0, 3);
+  top3.forEach(box => {
+    box.style.display = '';
+  });
+
+  // Reordenar visualmente las 3 mejores al principio
+  const container = document.querySelector('.boxes-container');
+  top3.forEach(box => container.appendChild(box));
 }
+
 
 // Alternar checkbox y guardar en cookie
 function toggleCheckbox(el, id) {
