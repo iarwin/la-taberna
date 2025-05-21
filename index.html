@@ -1,0 +1,74 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>la taberna</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="index-page">
+  <a href="index.html" class="page-title">la taberna</a>
+  <button id="menuButton" class="menu-button" onclick="location.href='menu.html'">menu</button>
+
+  <h2 id="chefRecommendations" class="menu-title">recomendaciones del chef:</h2>
+
+  <div class="top-divider"></div>
+
+  <div class="search-container">
+    <div class="filter-wrapper">
+      <button id="filterToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="currentColor" />
+        </svg>
+        filtrar
+      </button>
+      <div id="filterPanel" class="filter-panel hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <!-- Aquí se actualizará dinámicamente el título -->
+          <div class="filter-title">dificultad:</div>
+          <button id="clearFilters" style="font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #eee; cursor: pointer;">
+            limpiar
+          </button>
+        </div>
+        <div class="filter-options">
+          <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
+          <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
+          <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
+        </div>
+      </div>
+    </div>
+    <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
+  </div>
+
+  <div class="boxes-container">
+    <div class="box" data-difficulty="insana" data-name="ariekei" data-rating="4.9" data-ip="10.10.10.65" data-os="linux">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'ariekei')" data-id="ariekei">✓</div>
+      <div class="rating">4.9 ★</div>
+      <div class="tag insana">insana</div>
+      <div class="box-title">ariekei</div>
+    </div>
+    <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
+      <div class="rating">4.5 ★</div>
+      <div class="tag facil">facil</div>
+      <div class="box-title">cap</div>
+    </div>
+    <div class="box" data-difficulty="media" data-name="popcorn" data-rating="4.9" data-ip="10.10.10.6" data-os="linux">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'popcorn')" data-id="popcorn">✓</div>
+      <div class="rating">4.9 ★</div>
+      <div class="tag media">media</div>
+      <div class="box-title">popcorn</div>
+    </div>
+    <div class="box" data-difficulty="dificil" data-name="tentacle" data-rating="4.6" data-ip="10.10.10.224" data-os="linux">
+      <div class="checkbox" onclick="toggleCheckbox(this, 'tentacle')" data-id="tentacle">✓</div>
+      <div class="rating">4.6 ★</div>
+      <div class="tag dificil">dificil</div>
+      <div class="box-title">tentacle</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
