@@ -40,6 +40,10 @@
           <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
           <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
         </div>
+        <div class="filter-options">
+          <div class="filter-title">vulnerabilidades:</div>
+          <div id="vuln-checkboxes" class="checkbox-container"></div>
+        </div>
       </div>
     </div>
 
@@ -67,56 +71,65 @@
 
   <!-- Lista de máquinas -->
   <div class="boxes-container menu-boxes-container">
-    <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM">
+    <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM" data-vulns="idor,password-reuse,capabilities">
       <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
       <div class="rating">4.5 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">cap</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="media" data-name="popcorn" data-rating="4.9" data-ip="10.10.10.6" data-os="linux" data-video="yLZO51e3aKQ">
+    <div class="box" data-difficulty="media" data-name="popcorn" data-rating="4.9" data-ip="10.10.10.6" data-os="linux" data-video="yLZO51e3aKQ" data-vulns="file-upload,rce,kernel-exploit,cve">
       <div class="checkbox" onclick="toggleCheckbox(this, 'popcorn')" data-id="popcorn">✓</div>
       <div class="rating">4.9 ★</div>
       <div class="tag media">media</div>
       <div class="box-title">popcorn</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="knife" data-rating="3.7" data-ip="10.10.10.242" data-os="linux" data-video="QFxtNhNpD7Y">
+    <div class="box" data-difficulty="facil" data-name="knife" data-rating="3.7" data-ip="10.10.10.242" data-os="linux" data-video="QFxtNhNpD7Y" data-vulns="rce,sudo-misconfig,cve">
       <div class="checkbox" onclick="toggleCheckbox(this, 'knife')" data-id="knife">✓</div>
       <div class="rating">3.7 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">knife</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="twomillion" data-rating="4.6" data-ip="10.10.11.221" data-os="linux" data-video="J4vP19GUPE8">
+    <div class="box" data-difficulty="facil" data-name="twomillion" data-rating="4.6" data-ip="10.10.11.221" data-os="linux" data-video="J4vP19GUPE8" data-vulns="sqli,credential-dump,cronjobs">
       <div class="checkbox" onclick="toggleCheckbox(this, 'twomillion')" data-id="twomillion">✓</div>
       <div class="rating">4.6 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">twomillion</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="nibbles" data-rating="4.6" data-ip="10.10.10.75" data-os="linux" data-video="-mc-BmlLtTQ">
+    <div class="box" data-difficulty="facil" data-name="nibbles" data-rating="4.6" data-ip="10.10.10.75" data-os="linux" data-video="-mc-BmlLtTQ" data-vulns="file-upload,rce,default-creds,sudo-misconfig">
       <div class="checkbox" onclick="toggleCheckbox(this, 'nibbles')" data-id="nibbles">✓</div>
       <div class="rating">4.6 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">nibbles</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="chemistry" data-rating="4.4" data-ip="10.10.11.38" data-os="linux" data-video="5otWZjsT5Sg">
+    <div class="box" data-difficulty="facil" data-name="chemistry" data-rating="4.4" data-ip="10.10.11.38" data-os="linux" data-video="5otWZjsT5Sg" data-vulns="ssti,rce,capabilities">
       <div class="checkbox" onclick="toggleCheckbox(this, 'chemistry')" data-id="chemistry">✓</div>
       <div class="rating">4.4 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">chemistry</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="mirai" data-rating="4.7" data-ip="10.10.10.48" data-os="linux" data-video="AJyCamnfm50">
+    <div class="box" data-difficulty="facil" data-name="mirai" data-rating="4.7" data-ip="10.10.10.48" data-os="linux" data-video="AJyCamnfm50" data-vulns="rce,default-creds,suid,kernel-exploit,cve">
       <div class="checkbox" onclick="toggleCheckbox(this, 'mirai')" data-id="mirai">✓</div>
       <div class="rating">4.7 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">mirai</div>
+      <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="shoppy" data-rating="4.1" data-ip="10.10.11.180" data-os="linux" data-video="4CnUWbWBQNs">
+    <div class="box" data-difficulty="facil" data-name="shoppy" data-rating="4.1" data-ip="10.10.11.180" data-os="linux" data-video="4CnUWbWBQNs" data-vulns="sqli,password-reuse,sudo-misconfig">
       <div class="checkbox" onclick="toggleCheckbox(this, 'shoppy')" data-id="shoppy">✓</div>
       <div class="rating">4.1 ★</div>
       <div class="tag facil">facil</div>
       <div class="box-title">shoppy</div>
+      <div class="vuln-tags"></div>
     </div>
   </div>
 
+  <script src="vulns.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

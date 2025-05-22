@@ -104,8 +104,14 @@ function toggleCheckbox(el, id) {
 // Búsqueda y filtros
 function searchBoxes() {
   const txt = document.getElementById('searchInput').value.toLowerCase();
-  const active = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+  const activeDifficulties = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+
+  // Recoger vulnerabilidades activas
+  const vulnCheckboxes = document.querySelectorAll('#vuln-checkboxes input[type="checkbox"]:checked');
+  const activeVulns = Array.from(vulnCheckboxes).map(cb => cb.value.toLowerCase());
+
   const boxes = Array.from(document.querySelectorAll('.box'));
+
   if (!isMenuPage) {
     const chef = document.getElementById('chefRecommendations');
     if (txt) {
@@ -118,10 +124,19 @@ function searchBoxes() {
       return;
     }
   }
+
   boxes.forEach(box => {
     const matchesText = box.innerText.toLowerCase().includes(txt);
-    const matchesDiff = !active.length || active.includes(box.dataset.difficulty);
-    box.style.display = matchesText && matchesDiff ? '' : 'none';
+    const matchesDiff = !activeDifficulties.length || activeDifficulties.includes(box.dataset.difficulty);
+
+    // Filtrado por vulnerabilidades
+    const boxVulns = box.dataset.vulns
+      ? box.dataset.vulns.toLowerCase().split(',').map(v => v.trim())
+      : [];
+
+    const matchesVulns = !activeVulns.length || activeVulns.some(v => boxVulns.includes(v));
+
+    box.style.display = matchesText && matchesDiff && matchesVulns ? '' : 'none';
   });
 }
 
@@ -221,6 +236,7 @@ window.onload = () => {
   const clear = document.getElementById('clearFilters');
   if (clear) clear.addEventListener('click', () => {
     document.querySelectorAll('.filter-checkbox').forEach(cb => (cb.checked = false));
+    document.querySelectorAll('#vuln-checkboxes input[type="checkbox"]').forEach(cb => (cb.checked = false));
     searchBoxes();
   });
 
@@ -358,3 +374,52 @@ document.querySelectorAll('.sort-radio').forEach(radio => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const boxes = document.querySelectorAll('.box');
+
+  boxes.forEach(box => {
+    const vulnTagContainer = box.querySelector('.vuln-tags');
+    if (!vulnTagContainer) return;
+
+    const vulnsRaw = box.dataset.vulns;
+    if (!vulnsRaw) return;
+
+    const vulns = vulnsRaw.split(',').map(v => v.trim()).filter(Boolean);
+
+    vulnTagContainer.innerHTML = ''; // Limpiar por si acaso
+
+    const maxToShow = 6;
+    vulns.slice(0, maxToShow).forEach(vuln => {
+      const pill = document.createElement('span');
+      pill.className = 'vuln-pill';
+      pill.textContent = vuln;
+      vulnTagContainer.appendChild(pill);
+    });
+
+    if (vulns.length > maxToShow) {
+      const ellipsis = document.createElement('span');
+      ellipsis.className = 'vuln-pill';
+      ellipsis.textContent = '...';
+      vulnTagContainer.appendChild(ellipsis);
+    }
+  });
+
+  const vulnContainer = document.getElementById('vuln-checkboxes');
+
+  allVulnerabilities.forEach(vuln => {
+    const label = document.createElement('label');
+    label.style.display = 'inline-block';
+    label.style.marginRight = '8px';
+    label.style.marginBottom = '6px';
+    label.innerHTML = `
+      <input type="checkbox" value="${vuln}"> ${vuln}
+    `;
+    vulnContainer.appendChild(label);
+  });
+
+  // Escuchar cambios para filtrar
+  const checkboxes = vulnContainer.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', searchBoxes);
+  });
+});

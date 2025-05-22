@@ -522,3 +522,26 @@ body{
 .floating-menu-recipe-button:hover {
   background-color: #fff;
 }
+
+.vuln-tags {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center; /* Centra las etiquetas */
+}
+
+.vuln-pill {
+  background-color: #007BFF; /* Azul */
+  color: white;
+  padding: 4px 10px;
+  font-size: 14px;
+  border-radius: 12px;
+  white-space: nowrap;
+  max-width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: white;
+  font-weight: bold;
+  text-transform: lowercase;
+}
