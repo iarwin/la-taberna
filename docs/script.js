@@ -104,11 +104,9 @@ function toggleCheckbox(el, id) {
 // Búsqueda y filtros
 function searchBoxes() {
   const txt = document.getElementById('searchInput').value.toLowerCase();
-  const activeDifficulties = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
 
-  // Recoger vulnerabilidades activas
-  const vulnCheckboxes = document.querySelectorAll('#vuln-checkboxes input[type="checkbox"]:checked');
-  const activeVulns = Array.from(vulnCheckboxes).map(cb => cb.value.toLowerCase());
+  // FILTROS separados: dificultad
+  const activeDifficulties = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value.toLowerCase());
 
   const boxes = Array.from(document.querySelectorAll('.box'));
 
@@ -127,16 +125,11 @@ function searchBoxes() {
 
   boxes.forEach(box => {
     const matchesText = box.innerText.toLowerCase().includes(txt);
-    const matchesDiff = !activeDifficulties.length || activeDifficulties.includes(box.dataset.difficulty);
+    const boxDiff = box.dataset.difficulty ? box.dataset.difficulty.toLowerCase() : '';
 
-    // Filtrado por vulnerabilidades
-    const boxVulns = box.dataset.vulns
-      ? box.dataset.vulns.toLowerCase().split(',').map(v => v.trim())
-      : [];
+    const matchesDiff = activeDifficulties.length === 0 || activeDifficulties.includes(boxDiff);
 
-    const matchesVulns = !activeVulns.length || activeVulns.some(v => boxVulns.includes(v));
-
-    box.style.display = matchesText && matchesDiff && matchesVulns ? '' : 'none';
+    box.style.display = matchesText && matchesDiff ? '' : 'none';
   });
 }
 
@@ -236,7 +229,6 @@ window.onload = () => {
   const clear = document.getElementById('clearFilters');
   if (clear) clear.addEventListener('click', () => {
     document.querySelectorAll('.filter-checkbox').forEach(cb => (cb.checked = false));
-    document.querySelectorAll('#vuln-checkboxes input[type="checkbox"]').forEach(cb => (cb.checked = false));
     searchBoxes();
   });
 
@@ -402,24 +394,5 @@ document.addEventListener('DOMContentLoaded', () => {
       ellipsis.textContent = '...';
       vulnTagContainer.appendChild(ellipsis);
     }
-  });
-
-  const vulnContainer = document.getElementById('vuln-checkboxes');
-
-  allVulnerabilities.forEach(vuln => {
-    const label = document.createElement('label');
-    label.style.display = 'inline-block';
-    label.style.marginRight = '8px';
-    label.style.marginBottom = '6px';
-    label.innerHTML = `
-      <input type="checkbox" value="${vuln}"> ${vuln}
-    `;
-    vulnContainer.appendChild(label);
-  });
-
-  // Escuchar cambios para filtrar
-  const checkboxes = vulnContainer.querySelectorAll('input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', searchBoxes);
   });
 });

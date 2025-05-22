@@ -367,42 +367,37 @@ body{
   height: 35px;
 }
 
-/* Sobreescribe solo para index.html (no afecta a menu.html) */
+/* 1) Layout base para index.html (sólo cambia display a flex y gap, sin padding ni margin extra) */
 .boxes-container:not(.menu-boxes-container) {
-  /* Cambiamos de grid a flex para centrar fácilmente */
   display: flex;
-  flex-wrap: wrap;              /* que vuelva a la siguiente línea */
-  justify-content: center;      /* centra horizontalmente */
-  gap: 40px;                    /* mantiene el espacio entre cajas */
-  padding: 200px 40px 40px;     /* mismo padding-top que antes */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
   box-sizing: border-box;
   margin: 0 auto;
+  /* eliminamos padding-top y margin-top aquí */
 }
 
-/* Ajusta el ancho fijo de caja para flex */
+/* 2) Estado inicial en index.html SIN búsqueda: bajamos todo el contenedor */
+.index-page:not(.search-active) .boxes-container:not(.menu-boxes-container) {
+  padding-top: 400px; /* o el valor que quieras para posicionar las 3 máquinas */
+  transition: padding-top 0.3s ease;
+}
+
+/* 3) Estado index.html CON búsqueda activa: quitamos ese padding extra */
+.index-page.search-active .boxes-container:not(.menu-boxes-container) {
+  padding-top: 100;
+  transition: padding-top 0.3s ease;
+}
+
+/* 4) Ancho fijo de cada caja (igual que antes) */
 .boxes-container:not(.menu-boxes-container) .box {
   width: 400px;
 }
 
-/* Sobreescribe solo para index.html */
-.index-page .boxes-container:not(.menu-boxes-container) {
-  padding-top: 150px;  /* Ajusta la posición vertical del contenedor */
-}
-
-/* Si quieres mover las cajas individualmente, puedes usar margin-top */
-.index-page .boxes-container:not(.menu-boxes-container) .box {
-  margin-top: 250px;  /* Ajusta la posición de cada caja */
-}
-
-/* Ajusta la posición del título solo en index.html */
+/* 5) Ajuste del título (si lo necesitas) */
 .index-page .menu-title {
-  top: 250px;
-}
-
-/* Elevar cajas cuando haya búsqueda activa */
-.index-page.search-active .boxes-container:not(.menu-boxes-container) {
-  padding-top: 0px; /* Nuevo padding para subir las cajas */
-  transition: padding-top 0.3s ease;
+  top: 250px; /* ajusta según donde quieras que quede */
 }
 
 /* Estilos para menú flotante vacío al hacer click en .box */
