@@ -9,6 +9,7 @@
 <body class="index-page">
   <a href="index.html" class="page-title">la taberna</a>
   <button id="menuButton" class="menu-button" onclick="location.href='menu.html'">menu</button>
+  <button class="cuentaButton" onclick="location.href='cuenta.html'">la cuenta</button>
 
   <h2 id="chefRecommendations" class="menu-title">recomendaciones del chef:</h2>
 
@@ -22,24 +23,42 @@
         </svg>
         filtrar
       </button>
+
       <div id="filterPanel" class="filter-panel hidden">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <!-- Aquí se actualizará dinámicamente el título -->
-          <div class="filter-title">dificultad:</div>
           <button id="clearFilters" style="font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #eee; cursor: pointer;">
             limpiar
           </button>
         </div>
-        <div class="filter-options">
-          <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
-          <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
+
+        <!-- NUEVO: Agrupar filtros en columnas -->
+        <div class="filter-group" style="display: flex; gap: 33.333%; margin-top: -1%;">
+          <!-- Columna dificultad -->
+          <div>
+            <div class="filter-title">dificultad:</div>
+            <div class="filter-options">
+              <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
+              <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
+              <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
+              <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
+            </div>
+          </div>
+
+          <!-- Columna sistema operativo -->
+          <div>
+            <div class="filter-title">sistema operativo:</div>
+            <div class="filter-options">
+              <label><input type="checkbox" class="filter-os" value="linux" /> linux</label>
+              <label><input type="checkbox" class="filter-os" value="windows" /> windows</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
-  </div>
+
+  <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
+</div>
+
 
   <div class="boxes-container">
       <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM" data-vulns="idor,password-reuse,capabilities">

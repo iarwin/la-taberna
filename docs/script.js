@@ -106,8 +106,8 @@ function toggleCheckbox(el, id) {
 function searchBoxes() {
   const txt = document.getElementById('searchInput').value.toLowerCase();
 
-  // FILTROS separados: dificultad
   const activeDifficulties = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value.toLowerCase());
+  const activeOS = Array.from(document.querySelectorAll('.filter-os:checked')).map(cb => cb.value.toLowerCase());
 
   const boxes = Array.from(document.querySelectorAll('.box'));
 
@@ -127,10 +127,12 @@ function searchBoxes() {
   boxes.forEach(box => {
     const matchesText = box.innerText.toLowerCase().includes(txt);
     const boxDiff = box.dataset.difficulty ? box.dataset.difficulty.toLowerCase() : '';
+    const boxOS = box.dataset.os ? box.dataset.os.toLowerCase() : '';
 
     const matchesDiff = activeDifficulties.length === 0 || activeDifficulties.includes(boxDiff);
+    const matchesOS = activeOS.length === 0 || activeOS.includes(boxOS);
 
-    box.style.display = matchesText && matchesDiff ? '' : 'none';
+    box.style.display = matchesText && matchesDiff && matchesOS ? '' : 'none';
   });
 }
 
@@ -230,6 +232,7 @@ window.onload = () => {
   const clear = document.getElementById('clearFilters');
   if (clear) clear.addEventListener('click', () => {
     document.querySelectorAll('.filter-checkbox').forEach(cb => (cb.checked = false));
+    document.querySelectorAll('.filter-os').forEach(cb => (cb.checked = false));
     searchBoxes();
   });
 
@@ -396,4 +399,8 @@ document.addEventListener('DOMContentLoaded', () => {
       vulnTagContainer.appendChild(ellipsis);
     }
   });
+});
+
+document.querySelectorAll('.filter-checkbox, .filter-os').forEach(cb => {
+  cb.addEventListener('change', searchBoxes);
 });

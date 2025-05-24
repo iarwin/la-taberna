@@ -9,6 +9,7 @@
   <!-- Parte superior (header) -->
   <a href="index.html" class="page-title">la taberna</a>
   <button id="menuButton" class="menu-button" onclick="window.location.href='menu.html'">menu</button>
+  <button class="cuentaButton" onclick="location.href='cuenta.html'">la cuenta</button>
   <div class="top-divider"></div>
 
   <!-- Título "el menu" -->
@@ -17,7 +18,7 @@
   <!-- Contenedor de búsqueda con separación específica para el menú -->
   <div class="search-container menu-search-container">
     <div class="filter-wrapper">
-      <!-- Botón para activar el filtro -->
+      <!-- Botón de filtrar -->
       <button id="filterToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="currentColor" />
@@ -25,20 +26,34 @@
         filtrar
       </button>
 
-      <!-- Panel de filtros -->
+      <!-- Panel de filtros actualizado -->
       <div id="filterPanel" class="filter-panel hidden">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div class="filter-title">dificultad:</div>
           <button id="clearFilters" style="font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #eee; cursor: pointer;">
             limpiar
           </button>
         </div>
 
-        <div class="filter-options">
-          <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
-          <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
-          <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
+        <div class="filter-group" style="display: flex; gap: 33.333%; margin-top: -1%;">
+          <!-- Columna dificultad -->
+          <div>
+            <div class="filter-title">dificultad:</div>
+            <div class="filter-options">
+              <label><input type="checkbox" class="filter-checkbox" value="facil" /> facil</label>
+              <label><input type="checkbox" class="filter-checkbox" value="media" /> media</label>
+              <label><input type="checkbox" class="filter-checkbox" value="dificil" /> dificil</label>
+              <label><input type="checkbox" class="filter-checkbox" value="insana" /> insana</label>
+            </div>
+          </div>
+
+          <!-- Columna sistema operativo -->
+          <div>
+            <div class="filter-title">sistema operativo:</div>
+            <div class="filter-options">
+              <label><input type="checkbox" class="filter-os" value="linux" /> linux</label>
+              <label><input type="checkbox" class="filter-os" value="windows" /> windows</label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -64,6 +79,7 @@
       </label>
     </div>
   </div>
+
 
   <!-- Lista de máquinas -->
   <div class="boxes-container menu-boxes-container">
