@@ -1,24 +1,22 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>la taberna - Menu</title>
+  <title>la taberna</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- Parte superior (header) -->
+<body class="index-page">
   <a href="index.html" class="page-title">la taberna</a>
-  <button id="menuButton" class="menu-button" onclick="window.location.href='menu.html'">menu</button>
+  <button id="menuButton" class="menu-button" onclick="location.href='menu.html'">menu</button>
   <button class="cuentaButton" onclick="location.href='cuenta.html'">la cuenta</button>
+
+  <h2 id="chefRecommendations" class="menu-title">recomendaciones del chef:</h2>
+
   <div class="top-divider"></div>
 
-  <!-- Título "el menu" -->
-  <div class="menu-title">el menu</div>
-
-  <!-- Contenedor de búsqueda con separación específica para el menú -->
-  <div class="search-container menu-search-container">
+  <div class="search-container">
     <div class="filter-wrapper">
-      <!-- Botón de filtrar -->
       <button id="filterToggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px;">
           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" fill="currentColor" />
@@ -26,7 +24,6 @@
         filtrar
       </button>
 
-      <!-- Panel de filtros actualizado -->
       <div id="filterPanel" class="filter-panel hidden">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <button id="clearFilters" style="font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #eee; cursor: pointer;">
@@ -34,6 +31,7 @@
           </button>
         </div>
 
+        <!-- NUEVO: Agrupar filtros en columnas -->
         <div class="filter-group" style="display: flex; gap: 33.333%; margin-top: -1%;">
           <!-- Columna dificultad -->
           <div>
@@ -58,32 +56,12 @@
       </div>
     </div>
 
-    <!-- Barra de búsqueda -->
-    <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
-
-    <!-- Botón Ordenar -->
-    <button id="sortToggle" class="sort-button">
-      ordenar
-    </button>
-
-    <!-- Panel de orden -->
-    <div id="sortPanel" class="sort-panel hidden">
-      <label>
-        <input type="radio" name="sort" class="sort-radio" value="alphabetical" /> alfabetico
-      </label>
-      <label>
-        <input type="radio" name="sort" class="sort-radio" value="difficulty" /> dificultad
-      </label>
-      <label>
-        <input type="radio" name="sort" class="sort-radio" value="rating" /> valoracion
-      </label>
-    </div>
-  </div>
+  <input type="text" id="searchInput" placeholder="Buscar..." onkeyup="searchBoxes()" />
+</div>
 
 
-  <!-- Lista de máquinas -->
-  <div class="boxes-container menu-boxes-container">
-    <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM" data-vulns="idor,password-reuse,capabilities">
+  <div class="boxes-container">
+      <div class="box" data-difficulty="facil" data-name="cap" data-rating="4.5" data-ip="10.10.10.245" data-os="linux" data-video="y07agLl1ArM" data-vulns="idor,password-reuse,capabilities">
       <div class="checkbox" onclick="toggleCheckbox(this, 'cap')" data-id="cap">✓</div>
       <div class="rating">4.5 ★</div>
       <div class="tag facil">facil</div>
@@ -139,7 +117,7 @@
       <div class="box-title">shoppy</div>
       <div class="vuln-tags"></div>
     </div>
-    <div class="box" data-difficulty="facil" data-name="wifinetic" data-rating="4.4" data-ip="10.10.11.247" data-os="linux" data-video="4ZfPrC5x60s" data-vulns="deffault-creds,password-reuse,capabilities,file-permissions">
+      <div class="box" data-difficulty="facil" data-name="wifinetic" data-rating="4.4" data-ip="10.10.11.247" data-os="linux" data-video="4ZfPrC5x60s" data-vulns="deffault-creds,password-reuse,capabilities,file-permissions">
       <div class="checkbox" onclick="toggleCheckbox(this, 'wifinetic')" data-id="wifinetic">✓</div>
       <div class="rating">4.4 ★</div>
       <div class="tag facil">facil</div>
