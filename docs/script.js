@@ -1,5 +1,5 @@
 // script.js
-const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy'];
+const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic'];
 const isMenuPage = !!document.querySelector('.menu-boxes-container');
 
 // SVG icons como strings
@@ -56,6 +56,7 @@ function loadCheckboxesFromCookie() {
 // Mostrar solo top 3 por rating (index.html)
 function showTop3ByRating() {
   if (isMenuPage) return;
+  if (document.getElementById('searchInput').value.toLowerCase()) return;
 
   const boxes = Array.from(document.querySelectorAll('.boxes-container .box'));
 
