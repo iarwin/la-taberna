@@ -6,6 +6,7 @@
   color: #333;
   text-transform: lowercase;
   text-decoration: none; /* Quita el subrayado */
+  font-family: sans-serif;
 }
 
 #menuButton {
@@ -45,6 +46,6 @@
 
 #estadisticas {
   text-align: center;
-  margin-top: 20%;
+  margin-top: 10%;
 }
 
