@@ -1,4 +1,7 @@
-const machineList = [ 'cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic' ];
+const machineList = [
+  'cap', 'popcorn', 'knife', 'twomillion', 'nibbles',
+  'chemistry', 'mirai', 'shoppy', 'wifinetic'
+];
 
 const maquinas = [
   { difficulty: "facil", name: "cap", os: "linux", vulns: "idor,password-reuse,capabilities" },
@@ -13,31 +16,29 @@ const maquinas = [
 ];
 
 const categorias = {
-  "🕸️ Vulnerabilidades Web": [
+  "vulnerabilidades web": [
     "xss", "sqli", "lfi", "rfi", "idor", "csrf", "ssrf", "rce",
     "file-upload", "ssti", "open-redirect"
   ],
-  "🔐 Autenticación / Credenciales": [
+  "autenticacion / credenciales": [
     "default-creds", "weak-password", "password-reuse",
     "credential-dump", "hardcoded-creds"
   ],
-  "📈 Escalada de Privilegios": [
+  "escalada de privilegios": [
     "suid", "sudo-misconfig", "capabilities", "cronjobs",
     "path-hijack", "kernel-exploit", "unquoted-service-path",
     "seimpersonate", "token-manipulation", "alwaysinstallelevated"
   ],
-  "🧱 Active Directory": [
+  "active directory": [
     "as-rep-roasting", "kerberoasting", "llmnr-poisoning",
     "unconstrained-delegation", "rBCD", "gpp-password",
     "dcsync", "golden-ticket", "bloodhound-needed"
   ],
-  "⚙️ Misconfiguraciones generales": [
+  "misconfiguraciones generales": [
     "file-permissions", "docker-misconfig", "git-leak",
     "env-leak", "insecure-api", "exposed-panel"
   ],
-  "💣 Exploits conocidos": [
-    "cve"
-  ]
+  "exploits conocidos": ["cve"]
 };
 
 function getCookie(name) {
@@ -72,13 +73,17 @@ function mostrarEstadisticas() {
     .filter(Boolean);
 
   const total = completadas.length;
+  const porResolver = machineList.length - total;
   const dificultades = { facil: 0, media: 0, dificil: 0, insana: 0 };
   const sistemas = { linux: 0, windows: 0 };
 
-  // Inicializar contadores por categoría
   const categoriaContadores = {};
+  const subcategoriaContadores = {};
+
   for (const cat in categorias) {
     categoriaContadores[cat] = 0;
+    subcategoriaContadores[cat] = {};
+    categorias[cat].forEach(v => subcategoriaContadores[cat][v] = 0);
   }
 
   completadas.forEach(m => {
@@ -87,29 +92,76 @@ function mostrarEstadisticas() {
     const vulns = m.vulns.split(',');
 
     for (const [categoria, listaVulns] of Object.entries(categorias)) {
-      if (vulns.some(v => listaVulns.includes(v))) {
+      const intersect = vulns.filter(v => listaVulns.includes(v));
+      if (intersect.length > 0) {
         categoriaContadores[categoria]++;
+        intersect.forEach(v => subcategoriaContadores[categoria][v]++);
       }
     }
   });
 
-  // Construir HTML de categorías
-  let htmlCategorias = "";
+  const cont = document.getElementById("estadisticas");
+  let html = `
+    <div class="titulo-taberna">LA TABERNA</div>
+    <div class="subtitulo-taberna">by iarwin</div>
+    <div class="linea-asteriscos">************************************************</div>
+    <div class="titulo-cuenta">CUENTA</div>
+    <div class="linea-asteriscos">************************************************</div>
+    <div class="linea-ticket"><span class="info-title bold">dificultad</span><span></span></div>
+    <div class="linea-ticket"><span class="texto-ticket">facil</span><span class="numero-ticket">${dificultades.facil}</span></div>
+    <div class="linea-ticket"><span class="texto-ticket">media</span><span class="numero-ticket">${dificultades.media}</span></div>
+    <div class="linea-ticket"><span class="texto-ticket">dificil</span><span class="numero-ticket">${dificultades.dificil}</span></div>
+    <div class="linea-ticket"><span class="texto-ticket">insana</span><span class="numero-ticket">${dificultades.insana}</span></div>
+    <div class="linea-asteriscos-medio">************************************************</div>
+    <div class="linea-ticket"><span class="so-title bold">sistema operativo</span><span></span></div>
+    <div class="linea-ticket"><span class="texto-ticket">linux</span><span class="numero-ticket">${sistemas.linux}</span></div>
+    <div class="linea-ticket"><span class="texto-ticket">windows</span><span class="numero-ticket">${sistemas.windows}</span></div>
+    <div class="linea-asteriscos-final">************************************************</div>
+  `;
+
   for (const [categoria, count] of Object.entries(categoriaContadores)) {
-    htmlCategorias += `<p><strong>${categoria}:</strong> ${count}</p>`;
+    const catId = categoria.replace(/\W+/g, "_");
+
+    html += `
+      <div class="linea-ticket categoria-header" onclick="toggleDetalles('${catId}', this)">
+        <span class="texto-ticket bold">${categoria}<span class="flecha">▾</span></span>
+        <span class="numero-ticket">${count}</span>
+      </div>
+      <div class="categoria-detalles" id="${catId}">
+        ${Object.entries(subcategoriaContadores[categoria])
+          .map(([vuln, c]) => `
+            <div class="linea-ticket">
+              <span class="texto-ticket">${vuln}</span>
+              <span class="numero-ticket">${c}</span>
+            </div>
+          `).join('')}
+      </div>
+    `;
   }
 
-  const cont = document.getElementById("estadisticas");
-  cont.innerHTML = `
-    <p><strong>Máquinas resueltas:</strong> ${total}</p>
-    <p><strong>Fáciles:</strong> ${dificultades.facil}</p>
-    <p><strong>Medias:</strong> ${dificultades.media}</p>
-    <p><strong>Difíciles:</strong> ${dificultades.dificil}</p>
-    <p><strong>Insanas:</strong> ${dificultades.insana}</p>
-    <p><strong>Linux:</strong> ${sistemas.linux}</p>
-    <p><strong>Windows:</strong> ${sistemas.windows}</p>
-    ${htmlCategorias}
+
+  html += `
+    <div class="linea-asteriscos-medio">************************************************</div>
+    <div class="linea-ticket"><span class="texto-total bold">TOTAL</span><span class="numero-total bold">${total}</span></div>
+    <div class="resolver-texto"><span class="texto-ticket">por resolver</span><span class="resolver-numero">${porResolver}</span></div>
+    <div class="linea-asteriscos-medio">************************************************</div>
+    <div class="linea-ticket qr-linea"><img src="qr.png" alt="QR Code" class="qr-img" /></div>
+    <div class="titulo-thx">THANK YOU!</div>
   `;
+
+
+  cont.innerHTML = html;
+}
+
+function toggleDetalles(id, headerEl) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.toggle("visible");
+    const flecha = headerEl.querySelector(".texto-ticket .flecha");
+    if (flecha) {
+      flecha.textContent = el.classList.contains("visible") ? "▴" : "▾";
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", mostrarEstadisticas);
