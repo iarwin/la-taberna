@@ -8,9 +8,10 @@ body{
   top: 20px;
   left: 20px;
   font-size: 36px;
-  color: #333;
+  color: black;
   text-transform: lowercase;
   text-decoration: none; /* Quita el subrayado */
+  font-weight: bold;
 }
 
 #menuButton {
@@ -24,6 +25,7 @@ body{
   font-size: 30px;
   cursor: pointer;
   box-shadow: none;
+  font-weight: bold;
 }
 
 .cuentaButton {
@@ -37,6 +39,7 @@ body{
   font-size: 30px;
   cursor: pointer;
   box-shadow: none;
+  font-weight: bold;
 }
 
 .top-divider {

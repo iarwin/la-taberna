@@ -80,6 +80,21 @@ function showTop3ByRating() {
 
   // Mostrar solo las top 3
   const top3 = pendientes.slice(0, 3);
+  
+  if (top3.length === 0) {
+    const container = document.querySelector('.boxes-container');
+    
+    // Elimina cualquier mensaje previo
+    const oldMessage = container.querySelector('.no-recommendations');
+    if (oldMessage) oldMessage.remove();
+
+    const message = document.createElement('div');
+    message.textContent = "TOCAR CESPED";
+    message.classList.add('no-recommendations');
+    container.appendChild(message);
+    return;
+  }
+
   top3.forEach(box => {
     box.style.display = '';
   });
