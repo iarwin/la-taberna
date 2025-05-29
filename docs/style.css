@@ -19,25 +19,27 @@ body{
   position: absolute;
   top: 20px;
   left: 20px;
-  font-size: 36px;
+  font-size: 42px;
   color: black;
   text-transform: lowercase;
   text-decoration: none; /* Quita el subrayado */
   font-weight: bold;
+  font-family: 'ITC Zapf Chancery';
 }
 
 #menuButton {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 20px;
   background: none;
   color: black;
   border: none;
   padding: 0;
-  font-size: 30px;
+  font-size: 42px;
   cursor: pointer;
   box-shadow: none;
   font-weight: bold;
+  font-family: 'ITC Zapf Chancery';
 }
 
 #menuButton:hover {
@@ -535,6 +537,7 @@ body{
   flex-wrap: wrap;
   gap: 6px;
   justify-content: center; /* Centra las etiquetas */
+  align-items: center;
 }
 
 .vuln-pill {
@@ -577,16 +580,17 @@ body.en-cuenta .cuentaButton {
 
 .cuentaButton {
   position: absolute;
-  top: 25px;
-  right: 130px;
+  top: 20px;
+  right: 140px;
   background: none;
   color: black;
   border: none;
   padding: 0;
-  font-size: 30px;
+  font-size: 42px;
   cursor: pointer;
   box-shadow: none;
   font-weight: bold;
+  font-family: 'ITC Zapf Chancery';
 }
 
 .cuentaButton:hover {
@@ -600,5 +604,6 @@ body.en-cuenta .cuentaButton {
   color: black;
   margin-top: 50px;
   font-family: Anabil;
-  font-size: 50px;
+  font-size: 150px;
+  font-family: 'ITC Zapf Chancery';
 }
