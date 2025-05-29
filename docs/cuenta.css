@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Ascender Sans';
+  src: url('fonts/AscenderSansMnW01-Regular.woff2') format('woff2'),
+       url('fonts/AscenderSansMnW01-Regular.woff') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Prima Sans Bold';
+  src: url('fonts/PrimaSansBT-Bold.woff2') format('woff2'),
+       url('fonts/PrimaSansBT-Bold.woff') format('woff');
+  font-style: normal;
+}
+
 body{
   background-color: #f0f0f0;
   font-family: sans-serif;
@@ -97,6 +111,7 @@ body{
 }
 
 .texto-ticket {
+  font-family: 'Ascender Sans';
   text-align: left;
   display: flex;
   align-items: center;
@@ -104,6 +119,7 @@ body{
 }
 
 .numero-ticket {
+  font-family: 'Ascender Sans';
   text-align: right;
 }
 
@@ -125,15 +141,16 @@ body{
 }
 
 .subtitulo-taberna {
+  font-family: 'Ascender Sans';
   text-align: center;
   font-size: 18px;
   color: #555;
-  margin-top: -10px;
+  margin-top: -12px;
 }
 
 .linea-asteriscos {
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Ascender Sans';
   font-size: 14px;
   letter-spacing: 2px;
   white-space: nowrap;
@@ -152,14 +169,14 @@ body{
 
 .info-title {
   font-size: 20px;
-  font-weight: bold;
-  font-family: sans-serif;
-  margin-bottom: -14px;
+  font-weight: normal;
+  font-family: 'Prima Sans Bold';
+  margin-bottom: -16px;
 }
 
 .linea-asteriscos-medio {
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Ascender Sans';
   font-size: 14px;
   letter-spacing: 2px;
   white-space: nowrap;
@@ -177,7 +194,7 @@ body{
 
 .linea-asteriscos-final {
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Ascender Sans';
   font-size: 14px;
   letter-spacing: 2px;
   white-space: nowrap;
@@ -202,17 +219,19 @@ body{
 }
 
 .resolver-texto {
+  font-family: 'Ascender Sans';
   display: flex;
   justify-content: space-between;
   padding: 2px 12px;
   font-size: 18px;
   margin-top: none;
+  color: #555;
 }
 
 .resolver-numero {
   margin-right: 7px;
   margin-top: none;
-  font-family: sans-serif;
+  font-family: 'Ascender Sans';
 }
 
 .qr-linea {
