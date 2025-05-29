@@ -121,6 +121,9 @@ function toggleCheckbox(el, id) {
 function searchBoxes() {
   const txt = document.getElementById('searchInput').value.toLowerCase();
 
+  const cespedMsg = document.querySelector('.no-recommendations');
+  if (txt && cespedMsg) cespedMsg.remove();
+
   const activeDifficulties = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value.toLowerCase());
   const activeOS = Array.from(document.querySelectorAll('.filter-os:checked')).map(cb => cb.value.toLowerCase());
 
