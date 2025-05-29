@@ -1,0 +1,253 @@
+@font-face {
+  font-family: 'Ascender Sans';
+  src: url('fonts/AscenderSansMnW01-Regular.woff2') format('woff2'),
+       url('fonts/AscenderSansMnW01-Regular.woff') format('woff');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Prima Sans Bold';
+  src: url('fonts/PrimaSansBT-Bold.woff2') format('woff2'),
+       url('fonts/PrimaSansBT-Bold.woff') format('woff');
+  font-style: normal;
+}
+
+body{
+  background-color: #f0f0f0;
+  font-family: sans-serif;
+}
+
+.page-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 36px;
+  color: black;
+  text-transform: lowercase;
+  text-decoration: none; /* Quita el subrayado */
+  font-weight: bold;
+}
+
+#menuButton {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  background: none;
+  color: black;
+  border: none;
+  padding: 0;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: none;
+  font-weight: bold;
+}
+
+.cuentaButton {
+  position: absolute;
+  top: 25px;
+  right: 130px;
+  background: none;
+  color: black;
+  border: none;
+  padding: 0;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: none;
+  font-weight: bold;
+}
+
+.top-divider {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+#estadisticas {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.categoria-header {
+  cursor: pointer;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+.categoria-detalles {
+  display: none;
+  margin-left: none;
+  text-align: center;
+}
+
+.categoria-detalles.visible {
+  display: block;
+}
+
+/* Ticket container sin adornos */
+#ticket {
+  width: 500px;
+  margin: 80px auto;
+  padding: 24px;
+  background-color: white;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+
+.linea-ticket {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 12px;
+  font-size: 18px;
+  margin-top: 24px;
+}
+
+.texto-ticket {
+  font-family: 'Ascender Sans';
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.numero-ticket {
+  font-family: 'Ascender Sans';
+  text-align: right;
+}
+
+.flecha {
+  font-size: 18px;
+  margin-left: 4px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.titulo-taberna {
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-family: Anabil;
+}
+
+.subtitulo-taberna {
+  font-family: 'Ascender Sans';
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-top: -12px;
+}
+
+.linea-asteriscos {
+  text-align: center;
+  font-family: 'Ascender Sans';
+  font-size: 14px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 18px;
+}
+
+.titulo-cuenta {
+  text-align: center;
+  font-size: 22px;
+  color: #555;
+  font-weight: normal; /* No negrita */
+  margin-top: 10px;
+  font-family: sans-serif;
+}
+
+.info-title {
+  font-size: 20px;
+  font-weight: normal;
+  font-family: 'Prima Sans Bold';
+  margin-bottom: -16px;
+}
+
+.linea-asteriscos-medio {
+  text-align: center;
+  font-family: 'Ascender Sans';
+  font-size: 14px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.so-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-bottom: -14px;
+  margin-top: -10px;
+}
+
+.linea-asteriscos-final {
+  text-align: center;
+  font-family: 'Ascender Sans';
+  font-size: 14px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 24px;
+  margin-bottom: -10px;
+}
+
+.texto-total {
+  text-align: left;
+  font-size: 42px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: sans-serif;
+}
+
+.numero-total {
+  text-align: right;
+  font-size: 42px;
+  font-family: sans-serif;
+}
+
+.resolver-texto {
+  font-family: 'Ascender Sans';
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 12px;
+  font-size: 18px;
+  margin-top: none;
+  color: #555;
+}
+
+.resolver-numero {
+  margin-right: 7px;
+  margin-top: none;
+  font-family: 'Ascender Sans';
+}
+
+.qr-linea {
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.qr-img {
+  width: 100px;  /* ajusta el tamaño como quieras */
+  height: auto;
+}
+
+.titulo-thx {
+  text-align: center;
+  font-size: 22px;
+  font-weight: normal; /* No negrita */
+  margin-top: 10px;
+  font-family: sans-serif;
+}
