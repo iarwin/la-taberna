@@ -1,5 +1,5 @@
 // script.js
-const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo'];
+const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity'];
 const isMenuPage = !!document.querySelector('.menu-boxes-container');
 
 // SVG icons como strings
