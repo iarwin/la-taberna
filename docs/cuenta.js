@@ -1,4 +1,4 @@
-const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity'];
+const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity', 'ransom'];
 
 const maquinas = [
   { difficulty: "facil", name: "cap", os: "linux", vulns: "idor,password-reuse,capabilities" },
@@ -11,7 +11,8 @@ const maquinas = [
   { difficulty: "facil", name: "shoppy", os: "linux", vulns: "sqli,password-reuse,sudo-misconfig" },
   { difficulty: "facil", name: "wifinetic", os: "linux", vulns: "default-creds,password-reuse,capabilities,file-permissions" },
   { difficulty: "media", name: "wifinetictwo", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" },
-  { difficulty: "dificil", name: "calamity", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" }
+  { difficulty: "dificil", name: "calamity", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" },
+  { difficulty: "media", name: "ransom", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" }
 ];
 
 const categorias = {
