@@ -37,8 +37,7 @@ const categorias = {
   "misconfiguraciones generales": [
     "file-permissions", "docker-misconfig", "git-leak",
     "env-leak", "insecure-api", "exposed-panel"
-  ],
-  "exploits conocidos": ["cve"]
+  ]
 };
 
 function getCookie(name) {
@@ -86,10 +85,14 @@ function mostrarEstadisticas() {
     categorias[cat].forEach(v => subcategoriaContadores[cat][v] = 0);
   }
 
+  let totalCVEs = 0;
+
   completadas.forEach(m => {
     dificultades[m.difficulty]++;
     sistemas[m.os]++;
     const vulns = m.vulns.split(',');
+
+    if (vulns.includes("cve")) totalCVEs++;
 
     for (const [categoria, listaVulns] of Object.entries(categorias)) {
       const intersect = vulns.filter(v => listaVulns.includes(v));
@@ -139,6 +142,12 @@ function mostrarEstadisticas() {
     `;
   }
 
+  html += `
+    <div class="linea-ticket">
+      <span class="texto-ticket bold">CVEs</span>
+      <span class="numero-ticket">${totalCVEs}</span>
+    </div>
+  `;
 
   html += `
     <div class="linea-asteriscos-medio">************************************************</div>
