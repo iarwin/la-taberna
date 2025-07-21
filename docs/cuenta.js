@@ -1,18 +1,18 @@
 const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity', 'ransom'];
 
 const maquinas = [
-  { difficulty: "facil", name: "cap", os: "linux", vulns: "idor,password-reuse,capabilities" },
-  { difficulty: "media", name: "popcorn", os: "linux", vulns: "file-upload,rce,kernel-exploit,cve" },
-  { difficulty: "facil", name: "knife", os: "linux", vulns: "rce,sudo-misconfig,cve" },
-  { difficulty: "facil", name: "twomillion", os: "linux", vulns: "sqli,credential-dump,cronjobs" },
-  { difficulty: "facil", name: "nibbles", os: "linux", vulns: "file-upload,rce,default-creds,sudo-misconfig" },
-  { difficulty: "facil", name: "chemistry", os: "linux", vulns: "ssti,rce,capabilities" },
-  { difficulty: "facil", name: "mirai", os: "linux", vulns: "rce,default-creds,suid,kernel-exploit,cve" },
-  { difficulty: "facil", name: "shoppy", os: "linux", vulns: "sqli,password-reuse,sudo-misconfig" },
-  { difficulty: "facil", name: "wifinetic", os: "linux", vulns: "default-creds,password-reuse,capabilities,file-permissions" },
-  { difficulty: "media", name: "wifinetictwo", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" },
-  { difficulty: "dificil", name: "calamity", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" },
-  { difficulty: "media", name: "ransom", os: "linux", vulns: "rce,default-creds,exposed-panel,cve" }
+  { difficulty: "facil", name: "cap", os: "linux", vulns: "idor,credential-dump,password-reuse,capabilities" },
+  { difficulty: "media", name: "popcorn", os: "linux", vulns: "ssti,rce,file-upload,weak-password,sudo-misconfig,cronjobs,file-permissions" },
+  { difficulty: "facil", name: "knife", os: "linux", vulns: "rce,webshell,hardcoded-creds,password-reuse,sudo-misconfig,path-hijack,cve" },
+  { difficulty: "facil", name: "twomillion", os: "linux", vulns: "hardcoded-creds,weak-password,sudo-misconfig,file-permissions,cronjobs,env-leak" },
+  { difficulty: "facil", name: "nibbles", os: "linux", vulns: "lfi,rce,file-upload,default-creds,hardcoded-creds,credential-dump,sudo-misconfig,cronjobs,path-hijack,file-permissions,backup-leak" },
+  { difficulty: "facil", name: "chemistry", os: "linux", vulns: "file-upload,rce,credential-dump,weak-password,password-reuse,lfi" },
+  { difficulty: "facil", name: "mirai", os: "linux", vulns: "rce,default-creds,password-reuse,suid,exposed-panel,cve" },
+  { difficulty: "facil", name: "shoppy", os: "linux", vulns: "rce,file-upload,sqli,weak-password,credential-dump,sudo-misconfig,cronjobs,file-permissions" },
+  { difficulty: "facil", name: "wifinetic", os: "linux", vulns: "default-creds,hardcoded-creds,sqli,rce,file-permissions,backup-leak,sudo-misconfig" },
+  { difficulty: "media", name: "wifinetictwo", os: "linux", vulns: "default-creds,weak-password,credential-dump,sudo-misconfig,cronjobs,file-permissions" },
+  { difficulty: "dificil", name: "calamity", os: "linux", vulns: "file-upload,rce,xss,hardcoded-creds,suid,kernel-exploit,cve" },
+  { difficulty: "media", name: "ransom", os: "linux", vulns: "default-creds,bruteforce,credential-dump,suid,sudo-misconfig,cronjobs,file-permissions,backup-leak" }
 ];
 
 const categorias = {
