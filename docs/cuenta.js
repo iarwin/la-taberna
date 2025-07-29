@@ -1,4 +1,4 @@
-const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity', 'ransom', 'cypher'];
+const machineList = ['cap', 'popcorn', 'knife', 'twomillion', 'nibbles', 'chemistry', 'mirai', 'shoppy', 'wifinetic', 'wifinetictwo', 'calamity', 'ransom', 'cypher','bashed'];
 
 const maquinas = [
   { difficulty: "facil", name: "cap", os: "linux", vulns: "idor,credential-dump,password-reuse,capabilities" },
@@ -13,7 +13,8 @@ const maquinas = [
   { difficulty: "media", name: "wifinetictwo", os: "linux", vulns: "default-creds,weak-password,credential-dump,sudo-misconfig,cronjobs,file-permissions" },
   { difficulty: "dificil", name: "calamity", os: "linux", vulns: "file-upload,rce,xss,hardcoded-creds,suid,kernel-exploit,cve" },
   { difficulty: "media", name: "ransom", os: "linux", vulns: "default-creds,bruteforce,credential-dump,suid,sudo-misconfig,cronjobs,file-permissions,backup-leak" },
-  { difficulty: "media", name: "cypher", os: "linux", vulns: "rce,insecure-api,file-upload,weak-password,default-creds,sudo-misconfig,exposed-panel" }
+  { difficulty: "media", name: "cypher", os: "linux", vulns: "rce,insecure-api,file-upload,weak-password,default-creds,sudo-misconfig,exposed-panel" },
+  { difficulty: "facil", name: "bashed", os: "linux", vulns: "webshell,file-upload,sudo-misconfig,cronjob,file-permissions,insecure-api" }
 ];
 
 const categorias = {
